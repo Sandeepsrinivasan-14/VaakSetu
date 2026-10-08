@@ -1,0 +1,72 @@
+{
+  "parent": "v005",
+  "snapshot": "data\\snapshots\\stt_v006.jsonl",
+  "snapshot_sha256": "6f5ee029ca495fe5f9203393c8b01d44c119fd81945c611c9c717435afbd4ebe",
+  "languages": [
+    "en",
+    "hi",
+    "ta"
+  ],
+  "base_model": "openai/whisper-large-v3-turbo",
+  "method": "LoRA (decoder)",
+  "lora": {
+    "r": 32,
+    "alpha": 64,
+    "dropout": 0.05,
+    "target_modules": "model\\.decoder\\.layers\\.\\d+\\.((self_attn|encoder_attn)\\.(q_proj|k_proj|v_proj|out_proj)|fc1|fc2)"
+  },
+  "hyperparameters": {
+    "learning_rate": 0.0003,
+    "epochs": 6,
+    "batch_size": 8,
+    "grad_accum": 1,
+    "warmup_ratio": 0.1,
+    "weight_decay": 0.01,
+    "max_grad_norm": 1.0,
+    "seed": 42,
+    "augment": true,
+    "replay_ratio": 0.5,
+    "distill_weight": 1.0,
+    "continue_lr_scale": 0.5,
+    "ema_decay": 0.999,
+    "balance_batches": true,
+    "lang_loss_weight": {
+      "ta": 1.4,
+      "hi": 1.0,
+      "en": 1.0
+    }
+  },
+  "trainable_params": 4259840,
+  "total_params": 813137920,
+  "frozen_params": 808878080,
+  "n_corrections": 436,
+  "n_replay_per_epoch": 218,
+  "effective_lr": 0.00015,
+  "distill_weight": 1.0,
+  "ema_decay": 0.999,
+  "lang_loss_weight": {
+    "ta": 1.4,
+    "hi": 1.0,
+    "en": 1.0
+  },
+  "balance_batches": true,
+  "batches": {
+    "round1": 216,
+    "round2": 216,
+    "import": 2,
+    "round3": 2
+  },
+  "steps": 816,
+  "loss_per_epoch": [
+    0.3818,
+    0.1031,
+    0.0906,
+    0.0726,
+    0.0685,
+    0.0632
+  ],
+  "train_seconds": 2936.6,
+  "parent_adapter": "C:\\Users\\sndps\\Projects\\VaakSetu\\models\\stt\\v005\\adapter",
+  "device": "cuda",
+  "dtype": "torch.bfloat16"
+}

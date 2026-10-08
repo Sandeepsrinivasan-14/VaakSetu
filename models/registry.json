@@ -1,0 +1,3965 @@
+{
+  "stt": {
+    "active": "v006",
+    "versions": {
+      "v001": {
+        "parent": "base",
+        "snapshot": "data\\snapshots\\stt_v001.jsonl",
+        "snapshot_sha256": "bc7dc5ef7ed9bfc2f94f86ada1644f555171edd922868482d9810be80a874532",
+        "languages": [
+          "en",
+          "hi",
+          "ta"
+        ],
+        "base_model": "openai/whisper-large-v3-turbo",
+        "method": "LoRA (decoder)",
+        "lora": {
+          "r": 32,
+          "alpha": 64,
+          "dropout": 0.05,
+          "target_modules": "model\\.decoder\\.layers\\.\\d+\\.((self_attn|encoder_attn)\\.(q_proj|k_proj|v_proj|out_proj)|fc1|fc2)"
+        },
+        "hyperparameters": {
+          "learning_rate": 0.0003,
+          "epochs": 6,
+          "batch_size": 8,
+          "grad_accum": 1,
+          "warmup_ratio": 0.1,
+          "weight_decay": 0.01,
+          "max_grad_norm": 1.0,
+          "seed": 42,
+          "augment": true,
+          "replay_ratio": 0.3
+        },
+        "trainable_params": 4259840,
+        "total_params": 813137920,
+        "frozen_params": 808878080,
+        "n_corrections": 216,
+        "n_replay_per_epoch": 65,
+        "steps": 216,
+        "loss_per_epoch": [
+          0.5946,
+          0.2742,
+          0.1488,
+          0.114,
+          0.0725,
+          0.0614
+        ],
+        "train_seconds": 609.1,
+        "parent_adapter": null,
+        "device": "cuda",
+        "dtype": "torch.bfloat16",
+        "registered_at": "2026-09-23T08:16:21+00:00",
+        "round": "round1@recipe1",
+        "promoted": true,
+        "gate": [
+          "general wer 0.198 -> 0.201 (tolerance +0.02)"
+        ],
+        "superseded": true,
+        "note": "recipe 1 (no LwF, '/' suppressed); superseded by retrain"
+      },
+      "v002": {
+        "parent": "v001",
+        "snapshot": "data\\snapshots\\stt_v002.jsonl",
+        "snapshot_sha256": "ee575bce8e8846d8c0dc7213fd6c0cb46a5c9140cd3187d24a73be73c77e2861",
+        "languages": [
+          "en",
+          "hi",
+          "ta"
+        ],
+        "base_model": "openai/whisper-large-v3-turbo",
+        "method": "LoRA (decoder)",
+        "lora": {
+          "r": 32,
+          "alpha": 64,
+          "dropout": 0.05,
+          "target_modules": "model\\.decoder\\.layers\\.\\d+\\.((self_attn|encoder_attn)\\.(q_proj|k_proj|v_proj|out_proj)|fc1|fc2)"
+        },
+        "hyperparameters": {
+          "learning_rate": 0.0003,
+          "epochs": 6,
+          "batch_size": 8,
+          "grad_accum": 1,
+          "warmup_ratio": 0.1,
+          "weight_decay": 0.01,
+          "max_grad_norm": 1.0,
+          "seed": 42,
+          "augment": true,
+          "replay_ratio": 0.3
+        },
+        "trainable_params": 4259840,
+        "total_params": 813137920,
+        "frozen_params": 808878080,
+        "n_corrections": 432,
+        "n_replay_per_epoch": 130,
+        "steps": 426,
+        "loss_per_epoch": [
+          0.2668,
+          0.1107,
+          0.0692,
+          0.0455,
+          0.0282,
+          0.0199
+        ],
+        "train_seconds": 1185.7,
+        "parent_adapter": "C:\\Users\\sndps\\Projects\\VaakSetu\\models\\stt\\v001\\adapter",
+        "device": "cuda",
+        "dtype": "torch.bfloat16",
+        "registered_at": "2026-09-23T16:35:18+00:00",
+        "round": "round2@recipe1",
+        "promoted": false,
+        "gate": [
+          "general wer 0.201 -> 0.239 (tolerance +0.02)",
+          "round1_train wer 0.005 -> 0.002 (tolerance +0.02)",
+          "round1_test wer 0.217 -> 0.220 (tolerance +0.02)"
+        ],
+        "superseded": true,
+        "note": "recipe 1; rejected by gate"
+      },
+      "v003": {
+        "parent": "base",
+        "snapshot": "data\\snapshots\\stt_v003.jsonl",
+        "snapshot_sha256": "bc7dc5ef7ed9bfc2f94f86ada1644f555171edd922868482d9810be80a874532",
+        "languages": [
+          "en",
+          "hi",
+          "ta"
+        ],
+        "base_model": "openai/whisper-large-v3-turbo",
+        "method": "LoRA (decoder)",
+        "lora": {
+          "r": 32,
+          "alpha": 64,
+          "dropout": 0.05,
+          "target_modules": "model\\.decoder\\.layers\\.\\d+\\.((self_attn|encoder_attn)\\.(q_proj|k_proj|v_proj|out_proj)|fc1|fc2)"
+        },
+        "hyperparameters": {
+          "learning_rate": 0.0003,
+          "epochs": 6,
+          "batch_size": 8,
+          "grad_accum": 1,
+          "warmup_ratio": 0.1,
+          "weight_decay": 0.01,
+          "max_grad_norm": 1.0,
+          "seed": 42,
+          "augment": true,
+          "replay_ratio": 0.5,
+          "distill_weight": 1.0,
+          "continue_lr_scale": 0.5
+        },
+        "trainable_params": 4259840,
+        "total_params": 813137920,
+        "frozen_params": 808878080,
+        "n_corrections": 216,
+        "n_replay_per_epoch": 108,
+        "effective_lr": 0.0003,
+        "distill_weight": 1.0,
+        "steps": 246,
+        "loss_per_epoch": [
+          0.6237,
+          0.49,
+          0.3582,
+          0.3099,
+          0.2505,
+          0.246
+        ],
+        "train_seconds": 490.4,
+        "parent_adapter": null,
+        "device": "cuda",
+        "dtype": "torch.bfloat16",
+        "registered_at": "2026-09-23T18:01:19+00:00",
+        "round": "round1",
+        "promoted": true,
+        "gate": [
+          "general wer 0.198 -> 0.176 (tolerance +0.02)"
+        ]
+      },
+      "v004": {
+        "parent": "v003",
+        "snapshot": "data\\snapshots\\stt_v004.jsonl",
+        "snapshot_sha256": "ee575bce8e8846d8c0dc7213fd6c0cb46a5c9140cd3187d24a73be73c77e2861",
+        "languages": [
+          "en",
+          "hi",
+          "ta"
+        ],
+        "base_model": "openai/whisper-large-v3-turbo",
+        "method": "LoRA (decoder)",
+        "lora": {
+          "r": 32,
+          "alpha": 64,
+          "dropout": 0.05,
+          "target_modules": "model\\.decoder\\.layers\\.\\d+\\.((self_attn|encoder_attn)\\.(q_proj|k_proj|v_proj|out_proj)|fc1|fc2)"
+        },
+        "hyperparameters": {
+          "learning_rate": 0.0003,
+          "epochs": 6,
+          "batch_size": 8,
+          "grad_accum": 1,
+          "warmup_ratio": 0.1,
+          "weight_decay": 0.01,
+          "max_grad_norm": 1.0,
+          "seed": 42,
+          "augment": true,
+          "replay_ratio": 0.5,
+          "distill_weight": 1.0,
+          "continue_lr_scale": 0.5
+        },
+        "trainable_params": 4259840,
+        "total_params": 813137920,
+        "frozen_params": 808878080,
+        "n_corrections": 432,
+        "n_replay_per_epoch": 216,
+        "effective_lr": 0.00015,
+        "distill_weight": 1.0,
+        "steps": 486,
+        "loss_per_epoch": [
+          0.4282,
+          0.2746,
+          0.2385,
+          0.2332,
+          0.2289,
+          0.1837
+        ],
+        "train_seconds": 1004.0,
+        "parent_adapter": "C:\\Users\\sndps\\Projects\\VaakSetu\\models\\stt\\v003\\adapter",
+        "device": "cuda",
+        "dtype": "torch.bfloat16",
+        "registered_at": "2026-09-23T18:21:11+00:00",
+        "round": "round2",
+        "promoted": false,
+        "gate": [
+          "general wer 0.176 -> 0.179 (tolerance +0.02)",
+          "round1_train wer 0.015 -> 0.006 (tolerance +0.02)",
+          "round1_test wer 0.172 -> 0.207 (tolerance +0.02)"
+        ]
+      },
+      "v005": {
+        "parent": "v003",
+        "snapshot": "data\\snapshots\\stt_v005.jsonl",
+        "snapshot_sha256": "9daec2ebd48b46f7da45ebad0f80601325221e1320dc9ca8e148a6f3658b3fb4",
+        "languages": [
+          "en",
+          "hi",
+          "ta"
+        ],
+        "base_model": "openai/whisper-large-v3-turbo",
+        "method": "LoRA (decoder)",
+        "lora": {
+          "r": 32,
+          "alpha": 64,
+          "dropout": 0.05,
+          "target_modules": "model\\.decoder\\.layers\\.\\d+\\.((self_attn|encoder_attn)\\.(q_proj|k_proj|v_proj|out_proj)|fc1|fc2)"
+        },
+        "hyperparameters": {
+          "learning_rate": 0.0003,
+          "epochs": 6,
+          "batch_size": 8,
+          "grad_accum": 1,
+          "warmup_ratio": 0.1,
+          "weight_decay": 0.01,
+          "max_grad_norm": 1.0,
+          "seed": 42,
+          "augment": true,
+          "replay_ratio": 0.5,
+          "distill_weight": 1.0,
+          "continue_lr_scale": 0.5,
+          "ema_decay": 0.999,
+          "balance_batches": true,
+          "lang_loss_weight": {
+            "ta": 1.4,
+            "hi": 1.0,
+            "en": 1.0
+          }
+        },
+        "trainable_params": 4259840,
+        "total_params": 813137920,
+        "frozen_params": 808878080,
+        "n_corrections": 434,
+        "n_replay_per_epoch": 217,
+        "effective_lr": 0.00015,
+        "distill_weight": 1.0,
+        "ema_decay": 0.999,
+        "lang_loss_weight": {
+          "ta": 1.4,
+          "hi": 1.0,
+          "en": 1.0
+        },
+        "balance_batches": true,
+        "batches": {
+          "round1": 216,
+          "round2": 216,
+          "import": 2
+        },
+        "steps": 654,
+        "loss_per_epoch": [
+          0.4194,
+          0.2139,
+          0.1953,
+          0.158,
+          0.163,
+          0.1387
+        ],
+        "train_seconds": 2156.1,
+        "parent_adapter": "C:\\Users\\sndps\\Projects\\VaakSetu\\models\\stt\\v003\\adapter",
+        "device": "cuda",
+        "dtype": "torch.bfloat16",
+        "registered_at": "2026-09-28T14:17:46+00:00",
+        "promoted": true,
+        "gate": [
+          "general wer +0.011 (tolerance +0.02, bootstrap 5th pct +0.000)",
+          "round1_train wer -0.005 (tolerance +0.02, bootstrap 5th pct -0.009)",
+          "round1_test wer +0.018 (tolerance +0.02, bootstrap 5th pct -0.004)",
+          "round2_train wer -0.528 (tolerance +0.02, bootstrap 5th pct -0.581)",
+          "round2_test wer -0.260 (tolerance +0.02, bootstrap 5th pct -0.324)"
+        ]
+      },
+      "v006": {
+        "parent": "v005",
+        "snapshot": "data\\snapshots\\stt_v006.jsonl",
+        "snapshot_sha256": "6f5ee029ca495fe5f9203393c8b01d44c119fd81945c611c9c717435afbd4ebe",
+        "languages": [
+          "en",
+          "hi",
+          "ta"
+        ],
+        "base_model": "openai/whisper-large-v3-turbo",
+        "method": "LoRA (decoder)",
+        "lora": {
+          "r": 32,
+          "alpha": 64,
+          "dropout": 0.05,
+          "target_modules": "model\\.decoder\\.layers\\.\\d+\\.((self_attn|encoder_attn)\\.(q_proj|k_proj|v_proj|out_proj)|fc1|fc2)"
+        },
+        "hyperparameters": {
+          "learning_rate": 0.0003,
+          "epochs": 6,
+          "batch_size": 8,
+          "grad_accum": 1,
+          "warmup_ratio": 0.1,
+          "weight_decay": 0.01,
+          "max_grad_norm": 1.0,
+          "seed": 42,
+          "augment": true,
+          "replay_ratio": 0.5,
+          "distill_weight": 1.0,
+          "continue_lr_scale": 0.5,
+          "ema_decay": 0.999,
+          "balance_batches": true,
+          "lang_loss_weight": {
+            "ta": 1.4,
+            "hi": 1.0,
+            "en": 1.0
+          }
+        },
+        "trainable_params": 4259840,
+        "total_params": 813137920,
+        "frozen_params": 808878080,
+        "n_corrections": 436,
+        "n_replay_per_epoch": 218,
+        "effective_lr": 0.00015,
+        "distill_weight": 1.0,
+        "ema_decay": 0.999,
+        "lang_loss_weight": {
+          "ta": 1.4,
+          "hi": 1.0,
+          "en": 1.0
+        },
+        "balance_batches": true,
+        "batches": {
+          "round1": 216,
+          "round2": 216,
+          "import": 2,
+          "round3": 2
+        },
+        "steps": 816,
+        "loss_per_epoch": [
+          0.3818,
+          0.1031,
+          0.0906,
+          0.0726,
+          0.0685,
+          0.0632
+        ],
+        "train_seconds": 2936.6,
+        "parent_adapter": "C:\\Users\\sndps\\Projects\\VaakSetu\\models\\stt\\v005\\adapter",
+        "device": "cuda",
+        "dtype": "torch.bfloat16",
+        "registered_at": "2026-10-02T06:09:17+00:00",
+        "promoted": true,
+        "gate": [
+          "general wer -0.005 (tolerance +0.02, bootstrap 5th pct -0.027)",
+          "round1_train wer +0.008 (tolerance +0.02, bootstrap 5th pct +0.003)",
+          "round1_test wer -0.005 (tolerance +0.02, bootstrap 5th pct -0.029)",
+          "round2_train wer +0.000 (tolerance +0.02, bootstrap 5th pct -0.003)",
+          "round2_test wer -0.016 (tolerance +0.02, bootstrap 5th pct -0.075)",
+          "round3_train wer -0.977 (tolerance +0.02, bootstrap 5th pct -0.977)",
+          "round3_test wer -0.977 (tolerance +0.02, bootstrap 5th pct -0.977)"
+        ]
+      }
+    }
+  },
+  "tts-ta": {
+    "active": "v005",
+    "versions": {
+      "v001": {
+        "parent": "base",
+        "snapshot": "data\\snapshots\\tts-ta_v001.jsonl",
+        "snapshot_sha256": "1f25809f25ebaea549dc3a49a014cca1d0b0cb28aa6eaf397caa97f955010b3e",
+        "base_model": "facebook/mms-tts-tam",
+        "parent_version": "base",
+        "method": "partial fine-tune (text encoder + duration predictor), KL+duration loss with MAS",
+        "trainable_modules": [
+          "text_encoder",
+          "duration_predictor"
+        ],
+        "frozen_modules": [
+          "posterior_encoder",
+          "flow",
+          "decoder"
+        ],
+        "hyperparameters": {
+          "lr_new_embeddings": 0.002,
+          "lr_text_encoder": 2e-05,
+          "lr_duration": 0.0001,
+          "betas": [
+            0.8,
+            0.99
+          ],
+          "epochs": 60,
+          "batch_size": 8,
+          "max_grad_norm": 5.0,
+          "seed": 1234,
+          "replay_ratio": 1.0
+        },
+        "learned_chars": [
+          "α",
+          "β",
+          "γ",
+          "₹",
+          "0",
+          "1",
+          "2",
+          "5"
+        ],
+        "char_slots": {
+          "α": 4,
+          "β": 4,
+          "γ": 4,
+          "₹": 4,
+          "0": 4,
+          "1": 4,
+          "2": 4,
+          "5": 4
+        },
+        "vocab_size": 86,
+        "trainable_params": 7626288,
+        "total_params": 36293808,
+        "frozen_params": 28667520,
+        "n_corrections": 21,
+        "n_replay_per_epoch": 10,
+        "loss_per_epoch": [
+          {
+            "kl": -91.083,
+            "dur": 4.5617
+          },
+          {
+            "kl": -90.5983,
+            "dur": 3.3672
+          },
+          {
+            "kl": -96.8283,
+            "dur": 3.4074
+          },
+          {
+            "kl": -93.0129,
+            "dur": 2.6687
+          },
+          {
+            "kl": -93.5329,
+            "dur": 2.4336
+          },
+          {
+            "kl": -94.0379,
+            "dur": 2.253
+          },
+          {
+            "kl": -94.9564,
+            "dur": 2.1689
+          },
+          {
+            "kl": -98.5278,
+            "dur": 2.2265
+          },
+          {
+            "kl": -95.9742,
+            "dur": 2.0427
+          },
+          {
+            "kl": -100.661,
+            "dur": 2.0594
+          },
+          {
+            "kl": -95.6012,
+            "dur": 1.9405
+          },
+          {
+            "kl": -98.349,
+            "dur": 1.9361
+          },
+          {
+            "kl": -100.5952,
+            "dur": 1.9265
+          },
+          {
+            "kl": -95.5837,
+            "dur": 1.9767
+          },
+          {
+            "kl": -102.0505,
+            "dur": 1.8883
+          },
+          {
+            "kl": -103.1577,
+            "dur": 1.8841
+          },
+          {
+            "kl": -105.5237,
+            "dur": 1.8677
+          },
+          {
+            "kl": -108.4676,
+            "dur": 1.8498
+          },
+          {
+            "kl": -109.8491,
+            "dur": 1.8291
+          },
+          {
+            "kl": -115.3696,
+            "dur": 1.8688
+          },
+          {
+            "kl": -114.2616,
+            "dur": 1.7893
+          },
+          {
+            "kl": -117.0929,
+            "dur": 1.8016
+          },
+          {
+            "kl": -118.2634,
+            "dur": 1.7498
+          },
+          {
+            "kl": -130.1166,
+            "dur": 1.7979
+          },
+          {
+            "kl": -124.4285,
+            "dur": 1.7509
+          },
+          {
+            "kl": -126.8536,
+            "dur": 1.7325
+          },
+          {
+            "kl": -128.3793,
+            "dur": 1.7368
+          },
+          {
+            "kl": -131.1811,
+            "dur": 1.7048
+          },
+          {
+            "kl": -133.6825,
+            "dur": 1.6891
+          },
+          {
+            "kl": -137.4312,
+            "dur": 1.7041
+          },
+          {
+            "kl": -140.8998,
+            "dur": 1.6784
+          },
+          {
+            "kl": -144.4856,
+            "dur": 1.6878
+          },
+          {
+            "kl": -149.969,
+            "dur": 1.7072
+          },
+          {
+            "kl": -149.799,
+            "dur": 1.6879
+          },
+          {
+            "kl": -148.5696,
+            "dur": 1.6775
+          },
+          {
+            "kl": -155.0338,
+            "dur": 1.6784
+          },
+          {
+            "kl": -156.6295,
+            "dur": 1.6676
+          },
+          {
+            "kl": -158.2794,
+            "dur": 1.6624
+          },
+          {
+            "kl": -160.6198,
+            "dur": 1.6699
+          },
+          {
+            "kl": -163.4183,
+            "dur": 1.6798
+          },
+          {
+            "kl": -168.7149,
+            "dur": 1.6863
+          },
+          {
+            "kl": -168.6472,
+            "dur": 1.685
+          },
+          {
+            "kl": -160.5365,
+            "dur": 1.7011
+          },
+          {
+            "kl": -167.3125,
+            "dur": 1.6353
+          },
+          {
+            "kl": -176.3437,
+            "dur": 1.6817
+          },
+          {
+            "kl": -175.6084,
+            "dur": 1.6509
+          },
+          {
+            "kl": -174.3711,
+            "dur": 1.6208
+          },
+          {
+            "kl": -173.8632,
+            "dur": 1.6279
+          },
+          {
+            "kl": -180.7711,
+            "dur": 1.648
+          },
+          {
+            "kl": -185.6567,
+            "dur": 1.6827
+          },
+          {
+            "kl": -185.8297,
+            "dur": 1.6327
+          },
+          {
+            "kl": -187.4169,
+            "dur": 1.6562
+          },
+          {
+            "kl": -189.9089,
+            "dur": 1.6491
+          },
+          {
+            "kl": -187.3157,
+            "dur": 1.6445
+          },
+          {
+            "kl": -195.1849,
+            "dur": 1.6618
+          },
+          {
+            "kl": -187.1946,
+            "dur": 1.6536
+          },
+          {
+            "kl": -196.213,
+            "dur": 1.6203
+          },
+          {
+            "kl": -198.1277,
+            "dur": 1.5962
+          },
+          {
+            "kl": -196.3979,
+            "dur": 1.6279
+          },
+          {
+            "kl": -201.9422,
+            "dur": 1.6445
+          }
+        ],
+        "train_seconds": 58.7,
+        "device": "cuda",
+        "registered_at": "2026-09-23T18:26:36+00:00",
+        "round": "round1@kl-bug",
+        "promoted": false,
+        "gate": [
+          "general cer 0.133 -> 0.477 (tolerance +0.03)"
+        ],
+        "superseded": true,
+        "note": "trained with KL missing posterior variance (loss unbounded); superseded"
+      },
+      "v002": {
+        "parent": "base",
+        "snapshot": "data\\snapshots\\tts-ta_v002.jsonl",
+        "snapshot_sha256": "1f25809f25ebaea549dc3a49a014cca1d0b0cb28aa6eaf397caa97f955010b3e",
+        "base_model": "facebook/mms-tts-tam",
+        "parent_version": "base",
+        "method": "partial fine-tune (text encoder + duration predictor), KL+duration loss with MAS",
+        "trainable_modules": [
+          "text_encoder",
+          "duration_predictor"
+        ],
+        "frozen_modules": [
+          "posterior_encoder",
+          "flow",
+          "decoder"
+        ],
+        "hyperparameters": {
+          "lr_new_embeddings": 0.002,
+          "lr_text_encoder": 2e-05,
+          "lr_duration": 0.0001,
+          "betas": [
+            0.8,
+            0.99
+          ],
+          "epochs": 60,
+          "batch_size": 8,
+          "max_grad_norm": 5.0,
+          "seed": 1234,
+          "replay_ratio": 1.0
+        },
+        "learned_chars": [
+          "α",
+          "β",
+          "γ",
+          "₹",
+          "0",
+          "1",
+          "2",
+          "5"
+        ],
+        "char_slots": {
+          "α": 4,
+          "β": 4,
+          "γ": 4,
+          "₹": 4,
+          "0": 4,
+          "1": 4,
+          "2": 4,
+          "5": 4
+        },
+        "vocab_size": 86,
+        "trainable_params": 7626288,
+        "total_params": 36293808,
+        "frozen_params": 28667520,
+        "n_corrections": 21,
+        "n_replay_per_epoch": 10,
+        "loss_per_epoch": [
+          {
+            "kl": 11.9664,
+            "dur": 4.4907
+          },
+          {
+            "kl": 4.1004,
+            "dur": 3.3552
+          },
+          {
+            "kl": 17.1533,
+            "dur": 3.4899
+          },
+          {
+            "kl": 2.9073,
+            "dur": 2.6348
+          },
+          {
+            "kl": 2.8212,
+            "dur": 2.4232
+          },
+          {
+            "kl": 2.9775,
+            "dur": 2.2297
+          },
+          {
+            "kl": 2.7546,
+            "dur": 2.1197
+          },
+          {
+            "kl": 9.4221,
+            "dur": 2.196
+          },
+          {
+            "kl": 2.8239,
+            "dur": 1.9765
+          },
+          {
+            "kl": 9.1054,
+            "dur": 2.0668
+          },
+          {
+            "kl": 3.9851,
+            "dur": 1.9081
+          },
+          {
+            "kl": 2.5243,
+            "dur": 1.8779
+          },
+          {
+            "kl": 1.9324,
+            "dur": 1.8721
+          },
+          {
+            "kl": 8.7405,
+            "dur": 1.9985
+          },
+          {
+            "kl": 2.4122,
+            "dur": 1.8119
+          },
+          {
+            "kl": 2.6054,
+            "dur": 1.8029
+          },
+          {
+            "kl": 2.3557,
+            "dur": 1.7781
+          },
+          {
+            "kl": 2.0041,
+            "dur": 1.78
+          },
+          {
+            "kl": 2.4359,
+            "dur": 1.7708
+          },
+          {
+            "kl": 9.0704,
+            "dur": 1.924
+          },
+          {
+            "kl": 2.1362,
+            "dur": 1.7512
+          },
+          {
+            "kl": 8.8468,
+            "dur": 1.8614
+          },
+          {
+            "kl": 2.4708,
+            "dur": 1.7395
+          },
+          {
+            "kl": 15.5288,
+            "dur": 2.0101
+          },
+          {
+            "kl": 2.149,
+            "dur": 1.6862
+          },
+          {
+            "kl": 1.9652,
+            "dur": 1.6702
+          },
+          {
+            "kl": 2.2591,
+            "dur": 1.6733
+          },
+          {
+            "kl": 2.3305,
+            "dur": 1.6492
+          },
+          {
+            "kl": 2.1275,
+            "dur": 1.627
+          },
+          {
+            "kl": 2.3384,
+            "dur": 1.6368
+          },
+          {
+            "kl": 1.773,
+            "dur": 1.6379
+          },
+          {
+            "kl": 1.6583,
+            "dur": 1.6195
+          },
+          {
+            "kl": 8.6607,
+            "dur": 1.8465
+          },
+          {
+            "kl": 1.6188,
+            "dur": 1.6053
+          },
+          {
+            "kl": 2.399,
+            "dur": 1.6236
+          },
+          {
+            "kl": 1.5394,
+            "dur": 1.5584
+          },
+          {
+            "kl": 1.9961,
+            "dur": 1.5751
+          },
+          {
+            "kl": 2.1097,
+            "dur": 1.5957
+          },
+          {
+            "kl": 1.7954,
+            "dur": 1.5512
+          },
+          {
+            "kl": 7.9694,
+            "dur": 1.7858
+          },
+          {
+            "kl": 8.6347,
+            "dur": 1.7962
+          },
+          {
+            "kl": 8.1671,
+            "dur": 1.7948
+          },
+          {
+            "kl": 7.2269,
+            "dur": 1.8613
+          },
+          {
+            "kl": 2.7752,
+            "dur": 1.5918
+          },
+          {
+            "kl": 8.0959,
+            "dur": 1.7698
+          },
+          {
+            "kl": 1.5795,
+            "dur": 1.5422
+          },
+          {
+            "kl": 2.5567,
+            "dur": 1.5451
+          },
+          {
+            "kl": 6.4258,
+            "dur": 1.6449
+          },
+          {
+            "kl": 1.7713,
+            "dur": 1.5406
+          },
+          {
+            "kl": 8.0035,
+            "dur": 1.7785
+          },
+          {
+            "kl": 1.669,
+            "dur": 1.5114
+          },
+          {
+            "kl": 1.632,
+            "dur": 1.5176
+          },
+          {
+            "kl": 1.5841,
+            "dur": 1.4869
+          },
+          {
+            "kl": 2.0414,
+            "dur": 1.5511
+          },
+          {
+            "kl": 11.7888,
+            "dur": 1.8572
+          },
+          {
+            "kl": 13.693,
+            "dur": 2.0423
+          },
+          {
+            "kl": 1.6868,
+            "dur": 1.5087
+          },
+          {
+            "kl": 1.6355,
+            "dur": 1.5204
+          },
+          {
+            "kl": 5.8339,
+            "dur": 1.6673
+          },
+          {
+            "kl": 6.1113,
+            "dur": 1.6918
+          }
+        ],
+        "train_seconds": 65.3,
+        "device": "cuda",
+        "registered_at": "2026-09-23T18:30:53+00:00",
+        "round": "round1@layerdrop",
+        "promoted": false,
+        "gate": [
+          "general cer 0.133 -> 0.240 (tolerance +0.03)"
+        ],
+        "superseded": true,
+        "note": "KL fixed but trained in train mode (dropout+layerdrop); general CER 0.133->0.240; rejected"
+      },
+      "v003": {
+        "parent": "base",
+        "snapshot": "data\\snapshots\\tts-ta_v003.jsonl",
+        "snapshot_sha256": "1f25809f25ebaea549dc3a49a014cca1d0b0cb28aa6eaf397caa97f955010b3e",
+        "base_model": "facebook/mms-tts-tam",
+        "parent_version": "base",
+        "method": "partial fine-tune (text encoder incl. new symbol embeddings), prior KL with MAS",
+        "trainable_modules": [
+          "text_encoder"
+        ],
+        "frozen_modules": [
+          "duration_predictor",
+          "posterior_encoder",
+          "flow",
+          "decoder"
+        ],
+        "hyperparameters": {
+          "lr_new_embeddings": 0.002,
+          "lr_text_encoder": 2e-05,
+          "lr_duration": 0.0,
+          "dropout": false,
+          "betas": [
+            0.8,
+            0.99
+          ],
+          "epochs": 60,
+          "batch_size": 8,
+          "max_grad_norm": 5.0,
+          "seed": 1234,
+          "replay_ratio": 1.0
+        },
+        "learned_chars": [
+          "α",
+          "β",
+          "γ",
+          "₹",
+          "0",
+          "1",
+          "2",
+          "5"
+        ],
+        "char_slots": {
+          "α": 4,
+          "β": 4,
+          "γ": 4,
+          "₹": 4,
+          "0": 4,
+          "1": 4,
+          "2": 4,
+          "5": 4
+        },
+        "vocab_size": 86,
+        "trainable_params": 6309120,
+        "total_params": 36293808,
+        "frozen_params": 29984688,
+        "n_corrections": 21,
+        "n_replay_per_epoch": 10,
+        "loss_per_epoch": [
+          {
+            "kl": 3.4068,
+            "dur": 4.5974
+          },
+          {
+            "kl": 2.7215,
+            "dur": 4.5685
+          },
+          {
+            "kl": 2.2205,
+            "dur": 4.5341
+          },
+          {
+            "kl": 1.9532,
+            "dur": 4.5301
+          },
+          {
+            "kl": 1.8048,
+            "dur": 4.5211
+          },
+          {
+            "kl": 1.7557,
+            "dur": 4.497
+          },
+          {
+            "kl": 1.6916,
+            "dur": 4.577
+          },
+          {
+            "kl": 1.5388,
+            "dur": 4.582
+          },
+          {
+            "kl": 1.5148,
+            "dur": 4.6586
+          },
+          {
+            "kl": 1.4326,
+            "dur": 4.5509
+          },
+          {
+            "kl": 1.3925,
+            "dur": 4.6593
+          },
+          {
+            "kl": 1.3246,
+            "dur": 4.6627
+          },
+          {
+            "kl": 1.2693,
+            "dur": 4.7216
+          },
+          {
+            "kl": 1.2587,
+            "dur": 4.7815
+          },
+          {
+            "kl": 1.2394,
+            "dur": 4.8211
+          },
+          {
+            "kl": 1.1896,
+            "dur": 4.8566
+          },
+          {
+            "kl": 1.1723,
+            "dur": 4.7568
+          },
+          {
+            "kl": 1.1156,
+            "dur": 4.8464
+          },
+          {
+            "kl": 1.1075,
+            "dur": 4.8676
+          },
+          {
+            "kl": 1.0887,
+            "dur": 4.9062
+          },
+          {
+            "kl": 1.033,
+            "dur": 4.9742
+          },
+          {
+            "kl": 1.0518,
+            "dur": 4.9663
+          },
+          {
+            "kl": 1.029,
+            "dur": 5.0544
+          },
+          {
+            "kl": 1.0189,
+            "dur": 5.0507
+          },
+          {
+            "kl": 0.9819,
+            "dur": 5.084
+          },
+          {
+            "kl": 0.9528,
+            "dur": 5.1336
+          },
+          {
+            "kl": 0.934,
+            "dur": 5.1088
+          },
+          {
+            "kl": 0.9249,
+            "dur": 5.0554
+          },
+          {
+            "kl": 0.8911,
+            "dur": 5.0975
+          },
+          {
+            "kl": 0.9052,
+            "dur": 5.1354
+          },
+          {
+            "kl": 0.8936,
+            "dur": 5.227
+          },
+          {
+            "kl": 0.8793,
+            "dur": 5.2671
+          },
+          {
+            "kl": 0.8589,
+            "dur": 5.1722
+          },
+          {
+            "kl": 0.8587,
+            "dur": 5.145
+          },
+          {
+            "kl": 0.813,
+            "dur": 5.2176
+          },
+          {
+            "kl": 0.8125,
+            "dur": 5.271
+          },
+          {
+            "kl": 0.8159,
+            "dur": 5.2943
+          },
+          {
+            "kl": 0.7919,
+            "dur": 5.3512
+          },
+          {
+            "kl": 0.7701,
+            "dur": 5.3365
+          },
+          {
+            "kl": 0.7945,
+            "dur": 5.3803
+          },
+          {
+            "kl": 0.765,
+            "dur": 5.305
+          },
+          {
+            "kl": 0.7572,
+            "dur": 5.394
+          },
+          {
+            "kl": 0.7371,
+            "dur": 5.462
+          },
+          {
+            "kl": 0.7367,
+            "dur": 5.4087
+          },
+          {
+            "kl": 0.7234,
+            "dur": 5.6372
+          },
+          {
+            "kl": 0.733,
+            "dur": 5.5449
+          },
+          {
+            "kl": 0.7233,
+            "dur": 5.5376
+          },
+          {
+            "kl": 0.6958,
+            "dur": 5.5387
+          },
+          {
+            "kl": 0.6926,
+            "dur": 5.5679
+          },
+          {
+            "kl": 0.6912,
+            "dur": 5.5949
+          },
+          {
+            "kl": 0.6787,
+            "dur": 5.626
+          },
+          {
+            "kl": 0.6815,
+            "dur": 5.66
+          },
+          {
+            "kl": 0.663,
+            "dur": 5.6106
+          },
+          {
+            "kl": 0.6466,
+            "dur": 5.742
+          },
+          {
+            "kl": 0.6761,
+            "dur": 5.7611
+          },
+          {
+            "kl": 0.6791,
+            "dur": 5.7108
+          },
+          {
+            "kl": 0.6639,
+            "dur": 5.6587
+          },
+          {
+            "kl": 0.6355,
+            "dur": 5.751
+          },
+          {
+            "kl": 0.6404,
+            "dur": 5.8329
+          },
+          {
+            "kl": 0.6288,
+            "dur": 5.7978
+          }
+        ],
+        "train_seconds": 40.3,
+        "device": "cuda",
+        "registered_at": "2026-09-23T18:48:41+00:00",
+        "round": "round1",
+        "promoted": true,
+        "gate": [
+          "general cer 0.133 -> 0.136 (tolerance +0.03)"
+        ]
+      },
+      "v004": {
+        "parent": "v003",
+        "snapshot": "data\\snapshots\\tts-ta_v004.jsonl",
+        "snapshot_sha256": "99035067ac37067104ad848c8ac8a0d81ad38b695f227169be35ee0b3a1a9ccf",
+        "base_model": "facebook/mms-tts-tam",
+        "parent_version": "v003",
+        "method": "partial fine-tune (text encoder incl. new symbol embeddings), prior KL with MAS",
+        "trainable_modules": [
+          "text_encoder"
+        ],
+        "frozen_modules": [
+          "duration_predictor",
+          "posterior_encoder",
+          "flow",
+          "decoder"
+        ],
+        "hyperparameters": {
+          "lr_new_embeddings": 0.002,
+          "lr_text_encoder": 2e-05,
+          "lr_duration": 0.0,
+          "dropout": false,
+          "betas": [
+            0.8,
+            0.99
+          ],
+          "epochs": 60,
+          "batch_size": 8,
+          "max_grad_norm": 5.0,
+          "seed": 1234,
+          "replay_ratio": 1.0
+        },
+        "learned_chars": [
+          "/",
+          "8",
+          "t",
+          "n",
+          "b",
+          "k",
+          "m",
+          "x",
+          "c",
+          "d",
+          "e",
+          "f",
+          "l",
+          "°",
+          "%",
+          "µ",
+          "g",
+          "3",
+          "4",
+          "6",
+          "7",
+          "9"
+        ],
+        "char_slots": {
+          "α": 4,
+          "β": 4,
+          "γ": 4,
+          "₹": 4,
+          "0": 4,
+          "1": 4,
+          "2": 4,
+          "5": 4,
+          "/": 4,
+          "8": 4,
+          "t": 4,
+          "n": 4,
+          "b": 4,
+          "k": 4,
+          "m": 4,
+          "x": 4,
+          "c": 4,
+          "d": 4,
+          "e": 4,
+          "f": 4,
+          "l": 4,
+          "°": 4,
+          "%": 4,
+          "µ": 4,
+          "g": 4,
+          "3": 4,
+          "4": 4,
+          "6": 4,
+          "7": 4,
+          "9": 4
+        },
+        "vocab_size": 169,
+        "trainable_params": 6325056,
+        "total_params": 36309744,
+        "frozen_params": 29984688,
+        "n_corrections": 57,
+        "n_replay_per_epoch": 10,
+        "loss_per_epoch": [
+          {
+            "kl": 3.2688,
+            "dur": 5.6451
+          },
+          {
+            "kl": 2.4992,
+            "dur": 5.0094
+          },
+          {
+            "kl": 2.301,
+            "dur": 4.809
+          },
+          {
+            "kl": 2.0009,
+            "dur": 4.8855
+          },
+          {
+            "kl": 1.7811,
+            "dur": 4.8964
+          },
+          {
+            "kl": 1.7445,
+            "dur": 4.9248
+          },
+          {
+            "kl": 1.6065,
+            "dur": 4.9457
+          },
+          {
+            "kl": 1.6199,
+            "dur": 5.0144
+          },
+          {
+            "kl": 1.5321,
+            "dur": 5.0675
+          },
+          {
+            "kl": 1.4994,
+            "dur": 5.1812
+          },
+          {
+            "kl": 1.4442,
+            "dur": 5.1447
+          },
+          {
+            "kl": 1.3712,
+            "dur": 5.1558
+          },
+          {
+            "kl": 1.3692,
+            "dur": 5.1711
+          },
+          {
+            "kl": 1.3495,
+            "dur": 5.2704
+          },
+          {
+            "kl": 1.2847,
+            "dur": 5.3442
+          },
+          {
+            "kl": 1.1832,
+            "dur": 5.3085
+          },
+          {
+            "kl": 1.2147,
+            "dur": 5.3245
+          },
+          {
+            "kl": 1.1722,
+            "dur": 5.3336
+          },
+          {
+            "kl": 1.2045,
+            "dur": 5.285
+          },
+          {
+            "kl": 1.1537,
+            "dur": 5.2939
+          },
+          {
+            "kl": 1.1347,
+            "dur": 5.4098
+          },
+          {
+            "kl": 1.0961,
+            "dur": 5.3186
+          },
+          {
+            "kl": 1.1533,
+            "dur": 5.4151
+          },
+          {
+            "kl": 1.1269,
+            "dur": 5.3975
+          },
+          {
+            "kl": 1.1105,
+            "dur": 5.4198
+          },
+          {
+            "kl": 1.0348,
+            "dur": 5.4755
+          },
+          {
+            "kl": 1.0912,
+            "dur": 5.4159
+          },
+          {
+            "kl": 1.0587,
+            "dur": 5.4349
+          },
+          {
+            "kl": 1.0188,
+            "dur": 5.5046
+          },
+          {
+            "kl": 1.0187,
+            "dur": 5.4943
+          },
+          {
+            "kl": 1.042,
+            "dur": 5.4887
+          },
+          {
+            "kl": 0.9886,
+            "dur": 5.5071
+          },
+          {
+            "kl": 1.0198,
+            "dur": 5.4754
+          },
+          {
+            "kl": 0.9816,
+            "dur": 5.5236
+          },
+          {
+            "kl": 0.9957,
+            "dur": 5.5961
+          },
+          {
+            "kl": 0.9787,
+            "dur": 5.479
+          },
+          {
+            "kl": 0.9722,
+            "dur": 5.5435
+          },
+          {
+            "kl": 0.9603,
+            "dur": 5.579
+          },
+          {
+            "kl": 0.9415,
+            "dur": 5.5948
+          },
+          {
+            "kl": 0.9684,
+            "dur": 5.4944
+          },
+          {
+            "kl": 0.9359,
+            "dur": 5.5119
+          },
+          {
+            "kl": 0.9289,
+            "dur": 5.6427
+          },
+          {
+            "kl": 0.9177,
+            "dur": 5.5987
+          },
+          {
+            "kl": 0.9176,
+            "dur": 5.6449
+          },
+          {
+            "kl": 0.9064,
+            "dur": 5.6115
+          },
+          {
+            "kl": 0.8743,
+            "dur": 5.6475
+          },
+          {
+            "kl": 0.8831,
+            "dur": 5.5644
+          },
+          {
+            "kl": 0.9084,
+            "dur": 5.5442
+          },
+          {
+            "kl": 0.8609,
+            "dur": 5.6367
+          },
+          {
+            "kl": 0.8896,
+            "dur": 5.5938
+          },
+          {
+            "kl": 0.863,
+            "dur": 5.6277
+          },
+          {
+            "kl": 0.8526,
+            "dur": 5.6829
+          },
+          {
+            "kl": 0.8606,
+            "dur": 5.6388
+          },
+          {
+            "kl": 0.8256,
+            "dur": 5.6868
+          },
+          {
+            "kl": 0.8296,
+            "dur": 5.6486
+          },
+          {
+            "kl": 0.8403,
+            "dur": 5.6836
+          },
+          {
+            "kl": 0.8262,
+            "dur": 5.7243
+          },
+          {
+            "kl": 0.8466,
+            "dur": 5.6331
+          },
+          {
+            "kl": 0.8183,
+            "dur": 5.7373
+          },
+          {
+            "kl": 0.8069,
+            "dur": 5.6845
+          }
+        ],
+        "train_seconds": 86.4,
+        "device": "cuda",
+        "registered_at": "2026-09-23T18:50:47+00:00",
+        "round": "round2",
+        "promoted": true,
+        "gate": [
+          "general cer 0.136 -> 0.125 (tolerance +0.03)",
+          "round1_train cer 0.212 -> 0.213 (tolerance +0.03)",
+          "round1_test cer 0.282 -> 0.232 (tolerance +0.03)"
+        ]
+      },
+      "v005": {
+        "parent": "v004",
+        "snapshot": "data\\snapshots\\tts-ta_v005.jsonl",
+        "snapshot_sha256": "20e13e636f7e2a060b86531fbf4838d53174926f2b6f0c36e7379be2ad5c1905",
+        "base_model": "facebook/mms-tts-tam",
+        "parent_version": "v004",
+        "method": "partial fine-tune (text encoder incl. new symbol embeddings), prior KL with MAS",
+        "trainable_modules": [
+          "text_encoder"
+        ],
+        "frozen_modules": [
+          "duration_predictor",
+          "posterior_encoder",
+          "flow",
+          "decoder"
+        ],
+        "hyperparameters": {
+          "lr_new_embeddings": 0.002,
+          "lr_text_encoder": 2e-05,
+          "lr_duration": 0.0,
+          "dropout": false,
+          "betas": [
+            0.8,
+            0.99
+          ],
+          "epochs": 60,
+          "batch_size": 8,
+          "max_grad_norm": 5.0,
+          "seed": 1234,
+          "replay_ratio": 1.0
+        },
+        "learned_chars": [],
+        "char_slots": {
+          "α": 4,
+          "β": 4,
+          "γ": 4,
+          "₹": 4,
+          "0": 4,
+          "1": 4,
+          "2": 4,
+          "5": 4,
+          "/": 4,
+          "8": 4,
+          "t": 4,
+          "n": 4,
+          "b": 4,
+          "k": 4,
+          "m": 4,
+          "x": 4,
+          "c": 4,
+          "d": 4,
+          "e": 4,
+          "f": 4,
+          "l": 4,
+          "°": 4,
+          "%": 4,
+          "µ": 4,
+          "g": 4,
+          "3": 4,
+          "4": 4,
+          "6": 4,
+          "7": 4,
+          "9": 4
+        },
+        "vocab_size": 169,
+        "trainable_params": 6325056,
+        "total_params": 36309744,
+        "frozen_params": 29984688,
+        "n_corrections": 58,
+        "n_replay_per_epoch": 10,
+        "loss_per_epoch": [
+          {
+            "kl": 0.8643,
+            "dur": 5.6542
+          },
+          {
+            "kl": 0.8759,
+            "dur": 5.7034
+          },
+          {
+            "kl": 0.8468,
+            "dur": 5.6815
+          },
+          {
+            "kl": 0.8416,
+            "dur": 5.6537
+          },
+          {
+            "kl": 0.8051,
+            "dur": 5.8148
+          },
+          {
+            "kl": 0.8269,
+            "dur": 5.7736
+          },
+          {
+            "kl": 0.8336,
+            "dur": 5.8015
+          },
+          {
+            "kl": 0.7971,
+            "dur": 5.7561
+          },
+          {
+            "kl": 0.8139,
+            "dur": 5.778
+          },
+          {
+            "kl": 0.7982,
+            "dur": 5.7464
+          },
+          {
+            "kl": 0.7997,
+            "dur": 5.8566
+          },
+          {
+            "kl": 0.8156,
+            "dur": 5.7237
+          },
+          {
+            "kl": 0.7917,
+            "dur": 5.7749
+          },
+          {
+            "kl": 0.7567,
+            "dur": 5.7741
+          },
+          {
+            "kl": 0.7698,
+            "dur": 5.7627
+          },
+          {
+            "kl": 0.7794,
+            "dur": 5.7938
+          },
+          {
+            "kl": 0.7821,
+            "dur": 5.7597
+          },
+          {
+            "kl": 0.7781,
+            "dur": 5.7267
+          },
+          {
+            "kl": 0.7708,
+            "dur": 5.7609
+          },
+          {
+            "kl": 0.7554,
+            "dur": 5.7952
+          },
+          {
+            "kl": 0.7602,
+            "dur": 5.8284
+          },
+          {
+            "kl": 0.7423,
+            "dur": 5.8153
+          },
+          {
+            "kl": 0.7569,
+            "dur": 5.7182
+          },
+          {
+            "kl": 0.7958,
+            "dur": 5.7654
+          },
+          {
+            "kl": 0.7721,
+            "dur": 5.8306
+          },
+          {
+            "kl": 0.7721,
+            "dur": 5.7501
+          },
+          {
+            "kl": 0.7509,
+            "dur": 5.8363
+          },
+          {
+            "kl": 0.7477,
+            "dur": 5.8305
+          },
+          {
+            "kl": 0.7451,
+            "dur": 5.783
+          },
+          {
+            "kl": 0.7371,
+            "dur": 5.7657
+          },
+          {
+            "kl": 0.7392,
+            "dur": 5.8661
+          },
+          {
+            "kl": 0.7323,
+            "dur": 5.7902
+          },
+          {
+            "kl": 0.7583,
+            "dur": 5.8032
+          },
+          {
+            "kl": 0.7258,
+            "dur": 5.8469
+          },
+          {
+            "kl": 0.7337,
+            "dur": 5.865
+          },
+          {
+            "kl": 0.7273,
+            "dur": 5.8616
+          },
+          {
+            "kl": 0.7216,
+            "dur": 5.7643
+          },
+          {
+            "kl": 0.7546,
+            "dur": 5.7168
+          },
+          {
+            "kl": 0.7531,
+            "dur": 5.7853
+          },
+          {
+            "kl": 0.7303,
+            "dur": 5.8218
+          },
+          {
+            "kl": 0.7076,
+            "dur": 5.748
+          },
+          {
+            "kl": 0.7164,
+            "dur": 5.8626
+          },
+          {
+            "kl": 0.7155,
+            "dur": 5.8513
+          },
+          {
+            "kl": 0.72,
+            "dur": 5.8509
+          },
+          {
+            "kl": 0.7229,
+            "dur": 5.8375
+          },
+          {
+            "kl": 0.6923,
+            "dur": 5.829
+          },
+          {
+            "kl": 0.7193,
+            "dur": 5.8815
+          },
+          {
+            "kl": 0.7095,
+            "dur": 5.8689
+          },
+          {
+            "kl": 0.6977,
+            "dur": 5.816
+          },
+          {
+            "kl": 0.7039,
+            "dur": 5.9475
+          },
+          {
+            "kl": 0.7131,
+            "dur": 5.9147
+          },
+          {
+            "kl": 0.7427,
+            "dur": 5.8361
+          },
+          {
+            "kl": 0.7099,
+            "dur": 5.8285
+          },
+          {
+            "kl": 0.7043,
+            "dur": 5.9143
+          },
+          {
+            "kl": 0.7012,
+            "dur": 5.9032
+          },
+          {
+            "kl": 0.705,
+            "dur": 5.8563
+          },
+          {
+            "kl": 0.6903,
+            "dur": 5.8575
+          },
+          {
+            "kl": 0.7073,
+            "dur": 5.8582
+          },
+          {
+            "kl": 0.6906,
+            "dur": 5.7923
+          },
+          {
+            "kl": 0.6718,
+            "dur": 5.8775
+          }
+        ],
+        "train_seconds": 96.4,
+        "device": "cuda",
+        "registered_at": "2026-09-23T19:09:39+00:00",
+        "promoted": true,
+        "gate": [
+          "general cer 0.125 -> 0.131 (tolerance +0.03)",
+          "round1_train cer 0.213 -> 0.218 (tolerance +0.03)",
+          "round1_test cer 0.232 -> 0.230 (tolerance +0.03)",
+          "round2_train cer 0.485 -> 0.449 (tolerance +0.03)",
+          "round2_test cer 0.702 -> 0.697 (tolerance +0.03)"
+        ]
+      },
+      "v006": {
+        "parent": "v005",
+        "snapshot": "data\\snapshots\\tts-ta_v006.jsonl",
+        "snapshot_sha256": "e9237b2221ccc8f53556ce2ad47359d061b9a1a5caec05929a34c0f496fad93f",
+        "base_model": "facebook/mms-tts-tam",
+        "parent_version": "v005",
+        "method": "partial fine-tune (text encoder incl. new symbol embeddings), prior KL with MAS",
+        "trainable_modules": [
+          "text_encoder"
+        ],
+        "frozen_modules": [
+          "duration_predictor",
+          "posterior_encoder",
+          "flow",
+          "decoder"
+        ],
+        "hyperparameters": {
+          "lr_new_embeddings": 0.002,
+          "lr_text_encoder": 2e-05,
+          "lr_duration": 0.0,
+          "dropout": false,
+          "betas": [
+            0.8,
+            0.99
+          ],
+          "epochs": 60,
+          "batch_size": 8,
+          "max_grad_norm": 5.0,
+          "seed": 1234,
+          "replay_ratio": 1.0,
+          "ema_decay": 0.999
+        },
+        "learned_chars": [
+          "-",
+          "ஃ"
+        ],
+        "char_slots": {
+          "α": 4,
+          "β": 4,
+          "γ": 4,
+          "₹": 4,
+          "0": 4,
+          "1": 4,
+          "2": 4,
+          "5": 4,
+          "/": 4,
+          "8": 4,
+          "t": 4,
+          "n": 4,
+          "b": 4,
+          "k": 4,
+          "m": 4,
+          "x": 4,
+          "c": 4,
+          "d": 4,
+          "e": 4,
+          "f": 4,
+          "l": 4,
+          "°": 4,
+          "%": 4,
+          "µ": 4,
+          "g": 4,
+          "3": 4,
+          "4": 4,
+          "6": 4,
+          "7": 4,
+          "9": 4,
+          "-": 4,
+          "ஃ": 4
+        },
+        "vocab_size": 177,
+        "ema_decay": 0.999,
+        "trainable_params": 6326592,
+        "total_params": 36311280,
+        "frozen_params": 29984688,
+        "n_corrections": 59,
+        "n_replay_per_epoch": 10,
+        "loss_per_epoch": [
+          {
+            "kl": 0.9263,
+            "dur": 5.704
+          },
+          {
+            "kl": 0.8821,
+            "dur": 5.7533
+          },
+          {
+            "kl": 0.861,
+            "dur": 5.7304
+          },
+          {
+            "kl": 0.8059,
+            "dur": 5.7457
+          },
+          {
+            "kl": 0.8067,
+            "dur": 5.7121
+          },
+          {
+            "kl": 0.8096,
+            "dur": 5.7103
+          },
+          {
+            "kl": 0.7998,
+            "dur": 5.6638
+          },
+          {
+            "kl": 0.7832,
+            "dur": 5.6802
+          },
+          {
+            "kl": 0.7674,
+            "dur": 5.7031
+          },
+          {
+            "kl": 0.7688,
+            "dur": 5.734
+          },
+          {
+            "kl": 0.7837,
+            "dur": 5.6745
+          },
+          {
+            "kl": 0.7604,
+            "dur": 5.7696
+          },
+          {
+            "kl": 0.7687,
+            "dur": 5.7296
+          },
+          {
+            "kl": 0.7562,
+            "dur": 5.7378
+          },
+          {
+            "kl": 0.7742,
+            "dur": 5.7255
+          },
+          {
+            "kl": 0.7541,
+            "dur": 5.6987
+          },
+          {
+            "kl": 0.7682,
+            "dur": 5.7053
+          },
+          {
+            "kl": 0.734,
+            "dur": 5.7771
+          },
+          {
+            "kl": 0.7253,
+            "dur": 5.7938
+          },
+          {
+            "kl": 0.7434,
+            "dur": 5.7175
+          },
+          {
+            "kl": 0.7136,
+            "dur": 5.8356
+          },
+          {
+            "kl": 0.7358,
+            "dur": 5.7422
+          },
+          {
+            "kl": 0.7379,
+            "dur": 5.772
+          },
+          {
+            "kl": 0.7088,
+            "dur": 5.7824
+          },
+          {
+            "kl": 0.7174,
+            "dur": 5.7352
+          },
+          {
+            "kl": 0.7294,
+            "dur": 5.792
+          },
+          {
+            "kl": 0.7092,
+            "dur": 5.7828
+          },
+          {
+            "kl": 0.7038,
+            "dur": 5.7731
+          },
+          {
+            "kl": 0.6986,
+            "dur": 5.7978
+          },
+          {
+            "kl": 0.7092,
+            "dur": 5.7008
+          },
+          {
+            "kl": 0.7039,
+            "dur": 5.909
+          },
+          {
+            "kl": 0.7271,
+            "dur": 5.8361
+          },
+          {
+            "kl": 0.7358,
+            "dur": 5.819
+          },
+          {
+            "kl": 0.7279,
+            "dur": 5.7786
+          },
+          {
+            "kl": 0.7041,
+            "dur": 5.7642
+          },
+          {
+            "kl": 0.6988,
+            "dur": 5.7496
+          },
+          {
+            "kl": 0.7189,
+            "dur": 5.7742
+          },
+          {
+            "kl": 0.6981,
+            "dur": 5.7784
+          },
+          {
+            "kl": 0.6998,
+            "dur": 5.7874
+          },
+          {
+            "kl": 0.7009,
+            "dur": 5.7558
+          },
+          {
+            "kl": 0.6833,
+            "dur": 5.7863
+          },
+          {
+            "kl": 0.6904,
+            "dur": 5.8635
+          },
+          {
+            "kl": 0.6833,
+            "dur": 5.8403
+          },
+          {
+            "kl": 0.6945,
+            "dur": 5.8972
+          },
+          {
+            "kl": 0.6898,
+            "dur": 5.7842
+          },
+          {
+            "kl": 0.6829,
+            "dur": 5.7675
+          },
+          {
+            "kl": 0.677,
+            "dur": 5.8281
+          },
+          {
+            "kl": 0.6839,
+            "dur": 5.8027
+          },
+          {
+            "kl": 0.7121,
+            "dur": 5.7801
+          },
+          {
+            "kl": 0.6939,
+            "dur": 5.9215
+          },
+          {
+            "kl": 0.6751,
+            "dur": 5.8172
+          },
+          {
+            "kl": 0.681,
+            "dur": 5.8205
+          },
+          {
+            "kl": 0.6743,
+            "dur": 5.7892
+          },
+          {
+            "kl": 0.687,
+            "dur": 5.8341
+          },
+          {
+            "kl": 0.6813,
+            "dur": 5.8202
+          },
+          {
+            "kl": 0.6637,
+            "dur": 5.8525
+          },
+          {
+            "kl": 0.6632,
+            "dur": 5.9134
+          },
+          {
+            "kl": 0.6698,
+            "dur": 5.8508
+          },
+          {
+            "kl": 0.6739,
+            "dur": 5.784
+          },
+          {
+            "kl": 0.6917,
+            "dur": 5.7878
+          }
+        ],
+        "train_seconds": 544.3,
+        "device": "cuda",
+        "registered_at": "2026-10-02T06:26:59+00:00",
+        "promoted": false,
+        "gate": [
+          "general cer -0.005 (tolerance +0.03, bootstrap 5th pct -0.026)",
+          "round1_train cer +0.000 (tolerance +0.03, bootstrap 5th pct -0.019)",
+          "round1_test cer +0.010 (tolerance +0.03, bootstrap 5th pct -0.014)",
+          "round2_train cer -0.012 (tolerance +0.03, bootstrap 5th pct -0.045)",
+          "round2_test cer -0.502 (tolerance +0.03, bootstrap 5th pct -1.516)",
+          "round3_train cer +0.138 (tolerance +0.03, bootstrap 5th pct +0.138)",
+          "round3_test cer +0.012 (tolerance +0.03, bootstrap 5th pct +0.012)"
+        ]
+      }
+    }
+  },
+  "tts-hi": {
+    "active": "v002",
+    "versions": {
+      "v001": {
+        "parent": "base",
+        "snapshot": "data\\snapshots\\tts-hi_v001.jsonl",
+        "snapshot_sha256": "bfb09ac549a19b7b1b91262e98820172e3f1f77fccdfdbdf52f9a06e114b35a1",
+        "base_model": "facebook/mms-tts-hin",
+        "parent_version": "base",
+        "method": "partial fine-tune (text encoder incl. new symbol embeddings), prior KL with MAS",
+        "trainable_modules": [
+          "text_encoder"
+        ],
+        "frozen_modules": [
+          "duration_predictor",
+          "posterior_encoder",
+          "flow",
+          "decoder"
+        ],
+        "hyperparameters": {
+          "lr_new_embeddings": 0.002,
+          "lr_text_encoder": 2e-05,
+          "lr_duration": 0.0,
+          "dropout": false,
+          "betas": [
+            0.8,
+            0.99
+          ],
+          "epochs": 60,
+          "batch_size": 8,
+          "max_grad_norm": 5.0,
+          "seed": 1234,
+          "replay_ratio": 1.0
+        },
+        "learned_chars": [
+          "α",
+          "β",
+          "γ",
+          "₹",
+          "5",
+          "0",
+          "1",
+          "2"
+        ],
+        "char_slots": {
+          "α": 4,
+          "β": 4,
+          "γ": 4,
+          "₹": 4,
+          "5": 4,
+          "0": 4,
+          "1": 4,
+          "2": 4
+        },
+        "vocab_size": 101,
+        "trainable_params": 6312000,
+        "total_params": 36296688,
+        "frozen_params": 29984688,
+        "n_corrections": 21,
+        "n_replay_per_epoch": 10,
+        "loss_per_epoch": [
+          {
+            "kl": 3.0041,
+            "dur": 4.9804
+          },
+          {
+            "kl": 2.3236,
+            "dur": 5.1002
+          },
+          {
+            "kl": 1.999,
+            "dur": 5.0207
+          },
+          {
+            "kl": 1.7681,
+            "dur": 5.1056
+          },
+          {
+            "kl": 1.6241,
+            "dur": 5.0881
+          },
+          {
+            "kl": 1.5296,
+            "dur": 5.1393
+          },
+          {
+            "kl": 1.4284,
+            "dur": 5.1749
+          },
+          {
+            "kl": 1.3726,
+            "dur": 5.1957
+          },
+          {
+            "kl": 1.3257,
+            "dur": 5.1433
+          },
+          {
+            "kl": 1.2597,
+            "dur": 5.2939
+          },
+          {
+            "kl": 1.2189,
+            "dur": 5.2501
+          },
+          {
+            "kl": 1.1785,
+            "dur": 5.2308
+          },
+          {
+            "kl": 1.1268,
+            "dur": 5.2076
+          },
+          {
+            "kl": 1.1057,
+            "dur": 5.2654
+          },
+          {
+            "kl": 1.0743,
+            "dur": 5.2671
+          },
+          {
+            "kl": 1.0424,
+            "dur": 5.2667
+          },
+          {
+            "kl": 1.0228,
+            "dur": 5.2729
+          },
+          {
+            "kl": 0.9844,
+            "dur": 5.2196
+          },
+          {
+            "kl": 0.9626,
+            "dur": 5.2184
+          },
+          {
+            "kl": 0.943,
+            "dur": 5.3109
+          },
+          {
+            "kl": 0.9084,
+            "dur": 5.3184
+          },
+          {
+            "kl": 0.9065,
+            "dur": 5.2662
+          },
+          {
+            "kl": 0.892,
+            "dur": 5.378
+          },
+          {
+            "kl": 0.8715,
+            "dur": 5.2685
+          },
+          {
+            "kl": 0.8669,
+            "dur": 5.3308
+          },
+          {
+            "kl": 0.8322,
+            "dur": 5.2365
+          },
+          {
+            "kl": 0.8233,
+            "dur": 5.3216
+          },
+          {
+            "kl": 0.8029,
+            "dur": 5.3104
+          },
+          {
+            "kl": 0.7907,
+            "dur": 5.3925
+          },
+          {
+            "kl": 0.766,
+            "dur": 5.2027
+          },
+          {
+            "kl": 0.7543,
+            "dur": 5.3363
+          },
+          {
+            "kl": 0.7599,
+            "dur": 5.2477
+          },
+          {
+            "kl": 0.7431,
+            "dur": 5.361
+          },
+          {
+            "kl": 0.7276,
+            "dur": 5.3025
+          },
+          {
+            "kl": 0.7103,
+            "dur": 5.2352
+          },
+          {
+            "kl": 0.7129,
+            "dur": 5.2702
+          },
+          {
+            "kl": 0.7216,
+            "dur": 5.299
+          },
+          {
+            "kl": 0.7098,
+            "dur": 5.3385
+          },
+          {
+            "kl": 0.6952,
+            "dur": 5.222
+          },
+          {
+            "kl": 0.6977,
+            "dur": 5.2902
+          },
+          {
+            "kl": 0.6735,
+            "dur": 5.3204
+          },
+          {
+            "kl": 0.6556,
+            "dur": 5.249
+          },
+          {
+            "kl": 0.6564,
+            "dur": 5.2964
+          },
+          {
+            "kl": 0.6392,
+            "dur": 5.3404
+          },
+          {
+            "kl": 0.6315,
+            "dur": 5.2199
+          },
+          {
+            "kl": 0.6302,
+            "dur": 5.255
+          },
+          {
+            "kl": 0.6204,
+            "dur": 5.2885
+          },
+          {
+            "kl": 0.6121,
+            "dur": 5.2535
+          },
+          {
+            "kl": 0.6095,
+            "dur": 5.322
+          },
+          {
+            "kl": 0.6029,
+            "dur": 5.2664
+          },
+          {
+            "kl": 0.6058,
+            "dur": 5.2864
+          },
+          {
+            "kl": 0.6037,
+            "dur": 5.2918
+          },
+          {
+            "kl": 0.6004,
+            "dur": 5.3107
+          },
+          {
+            "kl": 0.579,
+            "dur": 5.18
+          },
+          {
+            "kl": 0.5926,
+            "dur": 5.3039
+          },
+          {
+            "kl": 0.5844,
+            "dur": 5.2078
+          },
+          {
+            "kl": 0.5738,
+            "dur": 5.3097
+          },
+          {
+            "kl": 0.5689,
+            "dur": 5.2415
+          },
+          {
+            "kl": 0.5707,
+            "dur": 5.2708
+          },
+          {
+            "kl": 0.5693,
+            "dur": 5.2752
+          }
+        ],
+        "train_seconds": 38.8,
+        "device": "cuda",
+        "registered_at": "2026-09-23T18:53:09+00:00",
+        "round": "round1",
+        "promoted": false,
+        "gate": [
+          "general cer 0.123 -> 0.154 (tolerance +0.03)"
+        ]
+      },
+      "v002": {
+        "parent": "base",
+        "snapshot": "data\\snapshots\\tts-hi_v002.jsonl",
+        "snapshot_sha256": "33513bc33a80d20a8a5ab0ebe6b5efc45306584347ed1b99038a6bffbb1b7c17",
+        "base_model": "facebook/mms-tts-hin",
+        "parent_version": "base",
+        "method": "partial fine-tune (text encoder incl. new symbol embeddings), prior KL with MAS",
+        "trainable_modules": [
+          "text_encoder"
+        ],
+        "frozen_modules": [
+          "duration_predictor",
+          "posterior_encoder",
+          "flow",
+          "decoder"
+        ],
+        "hyperparameters": {
+          "lr_new_embeddings": 0.002,
+          "lr_text_encoder": 2e-05,
+          "lr_duration": 0.0,
+          "dropout": false,
+          "betas": [
+            0.8,
+            0.99
+          ],
+          "epochs": 60,
+          "batch_size": 8,
+          "max_grad_norm": 5.0,
+          "seed": 1234,
+          "replay_ratio": 1.0
+        },
+        "learned_chars": [
+          "α",
+          "β",
+          "γ",
+          "₹",
+          "5",
+          "/",
+          "6",
+          "t",
+          "n",
+          "9",
+          "a",
+          "b",
+          "k",
+          "m",
+          "x",
+          "c",
+          "d",
+          "e",
+          "f",
+          "l",
+          "7",
+          "°",
+          "%",
+          "µ",
+          "g",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "8"
+        ],
+        "char_slots": {
+          "α": 4,
+          "β": 4,
+          "γ": 4,
+          "₹": 4,
+          "5": 4,
+          "/": 4,
+          "6": 4,
+          "t": 4,
+          "n": 4,
+          "9": 4,
+          "a": 4,
+          "b": 4,
+          "k": 4,
+          "m": 4,
+          "x": 4,
+          "c": 4,
+          "d": 4,
+          "e": 4,
+          "f": 4,
+          "l": 4,
+          "7": 4,
+          "°": 4,
+          "%": 4,
+          "µ": 4,
+          "g": 4,
+          "0": 4,
+          "1": 4,
+          "2": 4,
+          "3": 4,
+          "4": 4,
+          "8": 4
+        },
+        "vocab_size": 190,
+        "trainable_params": 6329088,
+        "total_params": 36313776,
+        "frozen_params": 29984688,
+        "n_corrections": 57,
+        "n_replay_per_epoch": 10,
+        "loss_per_epoch": [
+          {
+            "kl": 3.8564,
+            "dur": 4.9121
+          },
+          {
+            "kl": 2.9545,
+            "dur": 5.0456
+          },
+          {
+            "kl": 2.6324,
+            "dur": 5.2606
+          },
+          {
+            "kl": 2.2848,
+            "dur": 5.2153
+          },
+          {
+            "kl": 2.0351,
+            "dur": 5.2743
+          },
+          {
+            "kl": 1.9574,
+            "dur": 5.2335
+          },
+          {
+            "kl": 1.8059,
+            "dur": 5.3136
+          },
+          {
+            "kl": 1.7014,
+            "dur": 5.2342
+          },
+          {
+            "kl": 1.6124,
+            "dur": 5.3052
+          },
+          {
+            "kl": 1.5432,
+            "dur": 5.2752
+          },
+          {
+            "kl": 1.4583,
+            "dur": 5.3081
+          },
+          {
+            "kl": 1.4006,
+            "dur": 5.291
+          },
+          {
+            "kl": 1.3406,
+            "dur": 5.2617
+          },
+          {
+            "kl": 1.3313,
+            "dur": 5.2716
+          },
+          {
+            "kl": 1.2833,
+            "dur": 5.2582
+          },
+          {
+            "kl": 1.1937,
+            "dur": 5.2094
+          },
+          {
+            "kl": 1.1829,
+            "dur": 5.2607
+          },
+          {
+            "kl": 1.1293,
+            "dur": 5.2455
+          },
+          {
+            "kl": 1.1409,
+            "dur": 5.2342
+          },
+          {
+            "kl": 1.0832,
+            "dur": 5.272
+          },
+          {
+            "kl": 1.0534,
+            "dur": 5.2635
+          },
+          {
+            "kl": 1.0303,
+            "dur": 5.2506
+          },
+          {
+            "kl": 1.035,
+            "dur": 5.1752
+          },
+          {
+            "kl": 0.995,
+            "dur": 5.2005
+          },
+          {
+            "kl": 0.9917,
+            "dur": 5.1881
+          },
+          {
+            "kl": 0.9413,
+            "dur": 5.2221
+          },
+          {
+            "kl": 0.9501,
+            "dur": 5.2508
+          },
+          {
+            "kl": 0.9239,
+            "dur": 5.2511
+          },
+          {
+            "kl": 0.9083,
+            "dur": 5.2081
+          },
+          {
+            "kl": 0.8846,
+            "dur": 5.2242
+          },
+          {
+            "kl": 0.9039,
+            "dur": 5.1738
+          },
+          {
+            "kl": 0.8867,
+            "dur": 5.1495
+          },
+          {
+            "kl": 0.8395,
+            "dur": 5.222
+          },
+          {
+            "kl": 0.8353,
+            "dur": 5.2098
+          },
+          {
+            "kl": 0.8463,
+            "dur": 5.2476
+          },
+          {
+            "kl": 0.8184,
+            "dur": 5.219
+          },
+          {
+            "kl": 0.8303,
+            "dur": 5.1964
+          },
+          {
+            "kl": 0.7946,
+            "dur": 5.2428
+          },
+          {
+            "kl": 0.7636,
+            "dur": 5.1653
+          },
+          {
+            "kl": 0.7773,
+            "dur": 5.2022
+          },
+          {
+            "kl": 0.7635,
+            "dur": 5.2609
+          },
+          {
+            "kl": 0.7471,
+            "dur": 5.2092
+          },
+          {
+            "kl": 0.7523,
+            "dur": 5.1957
+          },
+          {
+            "kl": 0.7605,
+            "dur": 5.1415
+          },
+          {
+            "kl": 0.7306,
+            "dur": 5.1742
+          },
+          {
+            "kl": 0.7252,
+            "dur": 5.2285
+          },
+          {
+            "kl": 0.7167,
+            "dur": 5.227
+          },
+          {
+            "kl": 0.7056,
+            "dur": 5.1948
+          },
+          {
+            "kl": 0.6982,
+            "dur": 5.2081
+          },
+          {
+            "kl": 0.7101,
+            "dur": 5.1581
+          },
+          {
+            "kl": 0.7072,
+            "dur": 5.2736
+          },
+          {
+            "kl": 0.683,
+            "dur": 5.1974
+          },
+          {
+            "kl": 0.6719,
+            "dur": 5.1461
+          },
+          {
+            "kl": 0.6685,
+            "dur": 5.1542
+          },
+          {
+            "kl": 0.6567,
+            "dur": 5.1657
+          },
+          {
+            "kl": 0.6652,
+            "dur": 5.2162
+          },
+          {
+            "kl": 0.6696,
+            "dur": 5.1089
+          },
+          {
+            "kl": 0.647,
+            "dur": 5.2115
+          },
+          {
+            "kl": 0.6648,
+            "dur": 5.1886
+          },
+          {
+            "kl": 0.6384,
+            "dur": 5.1301
+          }
+        ],
+        "train_seconds": 83.5,
+        "device": "cuda",
+        "registered_at": "2026-09-23T18:55:10+00:00",
+        "round": "round2",
+        "promoted": true,
+        "gate": [
+          "general cer 0.123 -> 0.123 (tolerance +0.03)",
+          "round1_train cer 0.324 -> 0.258 (tolerance +0.03)",
+          "round1_test cer 0.237 -> 0.257 (tolerance +0.03)"
+        ]
+      }
+    }
+  },
+  "tts-en": {
+    "active": "v003",
+    "versions": {
+      "v001": {
+        "parent": "base",
+        "snapshot": "data\\snapshots\\tts-en_v001.jsonl",
+        "snapshot_sha256": "66691de164e115af48c8a42d969a1fe7e5f51d9a56f679a91c560f05f0bb56d0",
+        "base_model": "facebook/mms-tts-eng",
+        "parent_version": "base",
+        "method": "partial fine-tune (text encoder incl. new symbol embeddings), prior KL with MAS",
+        "trainable_modules": [
+          "text_encoder"
+        ],
+        "frozen_modules": [
+          "duration_predictor",
+          "posterior_encoder",
+          "flow",
+          "decoder"
+        ],
+        "hyperparameters": {
+          "lr_new_embeddings": 0.002,
+          "lr_text_encoder": 2e-05,
+          "lr_duration": 0.0,
+          "dropout": false,
+          "betas": [
+            0.8,
+            0.99
+          ],
+          "epochs": 60,
+          "batch_size": 8,
+          "max_grad_norm": 5.0,
+          "seed": 1234,
+          "replay_ratio": 1.0
+        },
+        "learned_chars": [
+          "α",
+          "β",
+          "γ",
+          "₹",
+          "0",
+          "1",
+          "2",
+          "5"
+        ],
+        "char_slots": {
+          "α": 4,
+          "β": 4,
+          "γ": 4,
+          "₹": 4,
+          "0": 4,
+          "1": 4,
+          "2": 4,
+          "5": 4
+        },
+        "vocab_size": 66,
+        "trainable_params": 6305280,
+        "total_params": 36289968,
+        "frozen_params": 29984688,
+        "n_corrections": 21,
+        "n_replay_per_epoch": 10,
+        "loss_per_epoch": [
+          {
+            "kl": 3.7597,
+            "dur": 3.4803
+          },
+          {
+            "kl": 2.8847,
+            "dur": 3.418
+          },
+          {
+            "kl": 2.41,
+            "dur": 3.4147
+          },
+          {
+            "kl": 2.1223,
+            "dur": 3.3869
+          },
+          {
+            "kl": 1.9381,
+            "dur": 3.4527
+          },
+          {
+            "kl": 1.8373,
+            "dur": 3.4476
+          },
+          {
+            "kl": 1.7009,
+            "dur": 3.4546
+          },
+          {
+            "kl": 1.5953,
+            "dur": 3.4734
+          },
+          {
+            "kl": 1.4974,
+            "dur": 3.4587
+          },
+          {
+            "kl": 1.4248,
+            "dur": 3.5706
+          },
+          {
+            "kl": 1.3767,
+            "dur": 3.4613
+          },
+          {
+            "kl": 1.3303,
+            "dur": 3.4825
+          },
+          {
+            "kl": 1.2754,
+            "dur": 3.5052
+          },
+          {
+            "kl": 1.2464,
+            "dur": 3.5119
+          },
+          {
+            "kl": 1.2013,
+            "dur": 3.5319
+          },
+          {
+            "kl": 1.1536,
+            "dur": 3.548
+          },
+          {
+            "kl": 1.1415,
+            "dur": 3.5588
+          },
+          {
+            "kl": 1.1052,
+            "dur": 3.5634
+          },
+          {
+            "kl": 1.0961,
+            "dur": 3.6309
+          },
+          {
+            "kl": 1.0755,
+            "dur": 3.6016
+          },
+          {
+            "kl": 1.0355,
+            "dur": 3.6398
+          },
+          {
+            "kl": 1.02,
+            "dur": 3.6461
+          },
+          {
+            "kl": 0.9983,
+            "dur": 3.7044
+          },
+          {
+            "kl": 0.9866,
+            "dur": 3.6245
+          },
+          {
+            "kl": 0.98,
+            "dur": 3.6454
+          },
+          {
+            "kl": 0.9525,
+            "dur": 3.7844
+          },
+          {
+            "kl": 0.9519,
+            "dur": 3.6993
+          },
+          {
+            "kl": 0.9309,
+            "dur": 3.7722
+          },
+          {
+            "kl": 0.92,
+            "dur": 3.7179
+          },
+          {
+            "kl": 0.9012,
+            "dur": 3.7455
+          },
+          {
+            "kl": 0.879,
+            "dur": 3.7931
+          },
+          {
+            "kl": 0.8985,
+            "dur": 3.7591
+          },
+          {
+            "kl": 0.8684,
+            "dur": 3.774
+          },
+          {
+            "kl": 0.8706,
+            "dur": 3.8681
+          },
+          {
+            "kl": 0.8369,
+            "dur": 3.8183
+          },
+          {
+            "kl": 0.8348,
+            "dur": 3.8619
+          },
+          {
+            "kl": 0.8307,
+            "dur": 3.8912
+          },
+          {
+            "kl": 0.8305,
+            "dur": 3.9012
+          },
+          {
+            "kl": 0.798,
+            "dur": 3.7745
+          },
+          {
+            "kl": 0.7948,
+            "dur": 3.8323
+          },
+          {
+            "kl": 0.7715,
+            "dur": 3.9034
+          },
+          {
+            "kl": 0.7719,
+            "dur": 3.8728
+          },
+          {
+            "kl": 0.7652,
+            "dur": 3.9351
+          },
+          {
+            "kl": 0.7552,
+            "dur": 3.9228
+          },
+          {
+            "kl": 0.7503,
+            "dur": 3.944
+          },
+          {
+            "kl": 0.7539,
+            "dur": 3.9504
+          },
+          {
+            "kl": 0.7428,
+            "dur": 3.9486
+          },
+          {
+            "kl": 0.7321,
+            "dur": 3.9676
+          },
+          {
+            "kl": 0.7297,
+            "dur": 3.9393
+          },
+          {
+            "kl": 0.7328,
+            "dur": 4.0161
+          },
+          {
+            "kl": 0.7217,
+            "dur": 3.9032
+          },
+          {
+            "kl": 0.7262,
+            "dur": 4.0272
+          },
+          {
+            "kl": 0.7118,
+            "dur": 3.9689
+          },
+          {
+            "kl": 0.6904,
+            "dur": 4.0191
+          },
+          {
+            "kl": 0.6973,
+            "dur": 4.0643
+          },
+          {
+            "kl": 0.6942,
+            "dur": 4.0636
+          },
+          {
+            "kl": 0.6835,
+            "dur": 4.0561
+          },
+          {
+            "kl": 0.6703,
+            "dur": 4.0631
+          },
+          {
+            "kl": 0.6751,
+            "dur": 4.0617
+          },
+          {
+            "kl": 0.6682,
+            "dur": 4.069
+          }
+        ],
+        "train_seconds": 37.8,
+        "device": "cuda",
+        "registered_at": "2026-09-23T18:57:25+00:00",
+        "round": "round1",
+        "promoted": true,
+        "gate": [
+          "general cer 0.008 -> 0.008 (tolerance +0.03)"
+        ]
+      },
+      "v002": {
+        "parent": "v001",
+        "snapshot": "data\\snapshots\\tts-en_v002.jsonl",
+        "snapshot_sha256": "50fd03ecd9da42996a444cfcd34683a3d36930df651eaba748b79696d44f0fe0",
+        "base_model": "facebook/mms-tts-eng",
+        "parent_version": "v001",
+        "method": "partial fine-tune (text encoder incl. new symbol embeddings), prior KL with MAS",
+        "trainable_modules": [
+          "text_encoder"
+        ],
+        "frozen_modules": [
+          "duration_predictor",
+          "posterior_encoder",
+          "flow",
+          "decoder"
+        ],
+        "hyperparameters": {
+          "lr_new_embeddings": 0.002,
+          "lr_text_encoder": 2e-05,
+          "lr_duration": 0.0,
+          "dropout": false,
+          "betas": [
+            0.8,
+            0.99
+          ],
+          "epochs": 60,
+          "batch_size": 8,
+          "max_grad_norm": 5.0,
+          "seed": 1234,
+          "replay_ratio": 1.0
+        },
+        "learned_chars": [
+          "/",
+          "8",
+          "9",
+          "7",
+          "°",
+          "%",
+          "µ",
+          "3",
+          "4",
+          "6"
+        ],
+        "char_slots": {
+          "α": 4,
+          "β": 4,
+          "γ": 4,
+          "₹": 4,
+          "0": 4,
+          "1": 4,
+          "2": 4,
+          "5": 4,
+          "/": 4,
+          "8": 4,
+          "9": 4,
+          "7": 4,
+          "°": 4,
+          "%": 4,
+          "µ": 4,
+          "3": 4,
+          "4": 4,
+          "6": 4
+        },
+        "vocab_size": 103,
+        "trainable_params": 6312384,
+        "total_params": 36297072,
+        "frozen_params": 29984688,
+        "n_corrections": 57,
+        "n_replay_per_epoch": 10,
+        "loss_per_epoch": [
+          {
+            "kl": 3.2496,
+            "dur": 3.9063
+          },
+          {
+            "kl": 2.3896,
+            "dur": 3.705
+          },
+          {
+            "kl": 2.2701,
+            "dur": 3.6569
+          },
+          {
+            "kl": 2.0201,
+            "dur": 3.6564
+          },
+          {
+            "kl": 1.7581,
+            "dur": 3.694
+          },
+          {
+            "kl": 1.7558,
+            "dur": 3.7135
+          },
+          {
+            "kl": 1.6006,
+            "dur": 3.7085
+          },
+          {
+            "kl": 1.5601,
+            "dur": 3.7529
+          },
+          {
+            "kl": 1.4614,
+            "dur": 3.678
+          },
+          {
+            "kl": 1.452,
+            "dur": 3.71
+          },
+          {
+            "kl": 1.3555,
+            "dur": 3.7785
+          },
+          {
+            "kl": 1.3246,
+            "dur": 3.7544
+          },
+          {
+            "kl": 1.3251,
+            "dur": 3.8092
+          },
+          {
+            "kl": 1.2977,
+            "dur": 3.7765
+          },
+          {
+            "kl": 1.2215,
+            "dur": 3.8454
+          },
+          {
+            "kl": 1.1588,
+            "dur": 3.8077
+          },
+          {
+            "kl": 1.1698,
+            "dur": 3.9131
+          },
+          {
+            "kl": 1.1294,
+            "dur": 3.8923
+          },
+          {
+            "kl": 1.1487,
+            "dur": 3.8266
+          },
+          {
+            "kl": 1.0874,
+            "dur": 3.848
+          },
+          {
+            "kl": 1.0676,
+            "dur": 3.9148
+          },
+          {
+            "kl": 1.0596,
+            "dur": 3.9123
+          },
+          {
+            "kl": 1.0636,
+            "dur": 3.9055
+          },
+          {
+            "kl": 1.0413,
+            "dur": 3.8864
+          },
+          {
+            "kl": 1.0213,
+            "dur": 3.9029
+          },
+          {
+            "kl": 0.9804,
+            "dur": 3.9788
+          },
+          {
+            "kl": 1.011,
+            "dur": 3.8392
+          },
+          {
+            "kl": 0.9833,
+            "dur": 3.9356
+          },
+          {
+            "kl": 0.9503,
+            "dur": 3.8791
+          },
+          {
+            "kl": 0.9384,
+            "dur": 3.9153
+          },
+          {
+            "kl": 0.9516,
+            "dur": 3.8835
+          },
+          {
+            "kl": 0.9319,
+            "dur": 3.8813
+          },
+          {
+            "kl": 0.9304,
+            "dur": 3.9092
+          },
+          {
+            "kl": 0.9203,
+            "dur": 3.9603
+          },
+          {
+            "kl": 0.9339,
+            "dur": 3.9876
+          },
+          {
+            "kl": 0.9048,
+            "dur": 3.9405
+          },
+          {
+            "kl": 0.8992,
+            "dur": 3.9873
+          },
+          {
+            "kl": 0.8754,
+            "dur": 3.9844
+          },
+          {
+            "kl": 0.8575,
+            "dur": 3.9246
+          },
+          {
+            "kl": 0.8844,
+            "dur": 4.0157
+          },
+          {
+            "kl": 0.8532,
+            "dur": 3.9643
+          },
+          {
+            "kl": 0.8443,
+            "dur": 4.0662
+          },
+          {
+            "kl": 0.8394,
+            "dur": 3.9918
+          },
+          {
+            "kl": 0.8446,
+            "dur": 4.0835
+          },
+          {
+            "kl": 0.8187,
+            "dur": 3.954
+          },
+          {
+            "kl": 0.8103,
+            "dur": 3.9417
+          },
+          {
+            "kl": 0.8029,
+            "dur": 4.1063
+          },
+          {
+            "kl": 0.8351,
+            "dur": 4.0701
+          },
+          {
+            "kl": 0.8008,
+            "dur": 4.0729
+          },
+          {
+            "kl": 0.7936,
+            "dur": 4.058
+          },
+          {
+            "kl": 0.7931,
+            "dur": 4.0126
+          },
+          {
+            "kl": 0.7875,
+            "dur": 4.0477
+          },
+          {
+            "kl": 0.7927,
+            "dur": 4.0417
+          },
+          {
+            "kl": 0.7767,
+            "dur": 4.1002
+          },
+          {
+            "kl": 0.7642,
+            "dur": 4.0493
+          },
+          {
+            "kl": 0.7654,
+            "dur": 4.0453
+          },
+          {
+            "kl": 0.754,
+            "dur": 4.0518
+          },
+          {
+            "kl": 0.7564,
+            "dur": 4.1226
+          },
+          {
+            "kl": 0.7492,
+            "dur": 4.0596
+          },
+          {
+            "kl": 0.7365,
+            "dur": 4.0695
+          }
+        ],
+        "train_seconds": 81.8,
+        "device": "cuda",
+        "registered_at": "2026-09-23T18:59:22+00:00",
+        "round": "round2",
+        "promoted": false,
+        "gate": [
+          "general cer 0.008 -> 0.008 (tolerance +0.03)",
+          "round1_train cer 0.141 -> 0.099 (tolerance +0.03)",
+          "round1_test cer 0.157 -> 0.188 (tolerance +0.03)"
+        ]
+      },
+      "v003": {
+        "parent": "v001",
+        "snapshot": "data\\snapshots\\tts-en_v003.jsonl",
+        "snapshot_sha256": "8aff9a168e5ca61482dad32cd48d95fc98713b57cffc2dcd917fcf76fe760311",
+        "base_model": "facebook/mms-tts-eng",
+        "parent_version": "v001",
+        "method": "partial fine-tune (text encoder incl. new symbol embeddings), prior KL with MAS",
+        "trainable_modules": [
+          "text_encoder"
+        ],
+        "frozen_modules": [
+          "duration_predictor",
+          "posterior_encoder",
+          "flow",
+          "decoder"
+        ],
+        "hyperparameters": {
+          "lr_new_embeddings": 0.002,
+          "lr_text_encoder": 2e-05,
+          "lr_duration": 0.0,
+          "dropout": false,
+          "betas": [
+            0.8,
+            0.99
+          ],
+          "epochs": 60,
+          "batch_size": 8,
+          "max_grad_norm": 5.0,
+          "seed": 1234,
+          "replay_ratio": 1.0,
+          "ema_decay": 0.999
+        },
+        "learned_chars": [
+          "/",
+          "8",
+          "9",
+          "7",
+          "°",
+          "%",
+          "µ",
+          "3",
+          "4",
+          "6"
+        ],
+        "char_slots": {
+          "α": 4,
+          "β": 4,
+          "γ": 4,
+          "₹": 4,
+          "0": 4,
+          "1": 4,
+          "2": 4,
+          "5": 4,
+          "/": 4,
+          "8": 4,
+          "9": 4,
+          "7": 4,
+          "°": 4,
+          "%": 4,
+          "µ": 4,
+          "3": 4,
+          "4": 4,
+          "6": 4
+        },
+        "vocab_size": 103,
+        "ema_decay": 0.999,
+        "trainable_params": 6312384,
+        "total_params": 36297072,
+        "frozen_params": 29984688,
+        "n_corrections": 87,
+        "n_replay_per_epoch": 10,
+        "loss_per_epoch": [
+          {
+            "kl": 4.0963,
+            "dur": 4.045
+          },
+          {
+            "kl": 3.4628,
+            "dur": 3.9035
+          },
+          {
+            "kl": 2.8939,
+            "dur": 3.7925
+          },
+          {
+            "kl": 2.7749,
+            "dur": 3.9517
+          },
+          {
+            "kl": 2.4859,
+            "dur": 3.8877
+          },
+          {
+            "kl": 2.3684,
+            "dur": 3.7739
+          },
+          {
+            "kl": 2.1983,
+            "dur": 3.9175
+          },
+          {
+            "kl": 2.1242,
+            "dur": 3.9842
+          },
+          {
+            "kl": 2.0862,
+            "dur": 4.0226
+          },
+          {
+            "kl": 2.0392,
+            "dur": 3.9424
+          },
+          {
+            "kl": 2.092,
+            "dur": 4.0518
+          },
+          {
+            "kl": 1.9376,
+            "dur": 4.0995
+          },
+          {
+            "kl": 1.839,
+            "dur": 3.9523
+          },
+          {
+            "kl": 1.7777,
+            "dur": 4.004
+          },
+          {
+            "kl": 1.8133,
+            "dur": 4.0896
+          },
+          {
+            "kl": 1.6916,
+            "dur": 4.1026
+          },
+          {
+            "kl": 1.6852,
+            "dur": 4.121
+          },
+          {
+            "kl": 1.6174,
+            "dur": 4.1414
+          },
+          {
+            "kl": 1.5498,
+            "dur": 4.0925
+          },
+          {
+            "kl": 1.5911,
+            "dur": 4.1096
+          },
+          {
+            "kl": 1.5882,
+            "dur": 4.1392
+          },
+          {
+            "kl": 1.5129,
+            "dur": 4.0754
+          },
+          {
+            "kl": 1.5124,
+            "dur": 4.1829
+          },
+          {
+            "kl": 1.5958,
+            "dur": 4.2215
+          },
+          {
+            "kl": 1.406,
+            "dur": 4.1732
+          },
+          {
+            "kl": 1.4766,
+            "dur": 4.2377
+          },
+          {
+            "kl": 1.5802,
+            "dur": 4.285
+          },
+          {
+            "kl": 1.3584,
+            "dur": 4.1445
+          },
+          {
+            "kl": 1.429,
+            "dur": 4.212
+          },
+          {
+            "kl": 1.4347,
+            "dur": 4.2266
+          },
+          {
+            "kl": 1.4462,
+            "dur": 4.3089
+          },
+          {
+            "kl": 1.3496,
+            "dur": 4.1965
+          },
+          {
+            "kl": 1.4648,
+            "dur": 4.2449
+          },
+          {
+            "kl": 1.3243,
+            "dur": 4.1576
+          },
+          {
+            "kl": 1.3018,
+            "dur": 4.212
+          },
+          {
+            "kl": 1.3067,
+            "dur": 4.2631
+          },
+          {
+            "kl": 1.3564,
+            "dur": 4.3114
+          },
+          {
+            "kl": 1.2857,
+            "dur": 4.209
+          },
+          {
+            "kl": 1.2653,
+            "dur": 4.1742
+          },
+          {
+            "kl": 1.2874,
+            "dur": 4.2752
+          },
+          {
+            "kl": 1.2536,
+            "dur": 4.1822
+          },
+          {
+            "kl": 1.2663,
+            "dur": 4.2211
+          },
+          {
+            "kl": 1.2102,
+            "dur": 4.3299
+          },
+          {
+            "kl": 1.2213,
+            "dur": 4.2283
+          },
+          {
+            "kl": 1.2243,
+            "dur": 4.3816
+          },
+          {
+            "kl": 1.3186,
+            "dur": 4.3397
+          },
+          {
+            "kl": 1.2425,
+            "dur": 4.3615
+          },
+          {
+            "kl": 1.1798,
+            "dur": 4.2881
+          },
+          {
+            "kl": 1.2466,
+            "dur": 4.4939
+          },
+          {
+            "kl": 1.134,
+            "dur": 4.3931
+          },
+          {
+            "kl": 1.1745,
+            "dur": 4.286
+          },
+          {
+            "kl": 1.1286,
+            "dur": 4.403
+          },
+          {
+            "kl": 1.1679,
+            "dur": 4.4357
+          },
+          {
+            "kl": 1.1107,
+            "dur": 4.3082
+          },
+          {
+            "kl": 1.2101,
+            "dur": 4.4807
+          },
+          {
+            "kl": 1.1455,
+            "dur": 4.2869
+          },
+          {
+            "kl": 1.1477,
+            "dur": 4.4142
+          },
+          {
+            "kl": 1.1204,
+            "dur": 4.287
+          },
+          {
+            "kl": 1.1202,
+            "dur": 4.3085
+          },
+          {
+            "kl": 1.1541,
+            "dur": 4.3827
+          }
+        ],
+        "train_seconds": 376.2,
+        "device": "cuda",
+        "registered_at": "2026-09-28T14:36:46+00:00",
+        "promoted": true,
+        "gate": [
+          "general cer +0.003 (tolerance +0.03, bootstrap 5th pct +0.000)",
+          "round1_train cer -0.028 (tolerance +0.03, bootstrap 5th pct -0.089)",
+          "round1_test cer +0.070 (tolerance +0.03, bootstrap 5th pct -0.009)",
+          "round2_train cer +0.143 (tolerance +0.03, bootstrap 5th pct -0.260)",
+          "round2_test cer +0.093 (tolerance +0.03, bootstrap 5th pct +0.022)"
+        ]
+      }
+    }
+  }
+}

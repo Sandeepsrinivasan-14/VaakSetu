@@ -1,0 +1,72 @@
+{
+  "add_blank": true,
+  "added_tokens_decoder": {
+    "0": {
+      "content": "फ",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "72": {
+      "content": "<unk>",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    }
+  },
+  "backend": "custom",
+  "char_slots": {
+    "α": 4,
+    "β": 4,
+    "γ": 4,
+    "₹": 4,
+    "5": 4,
+    "/": 4,
+    "6": 4,
+    "t": 4,
+    "n": 4,
+    "9": 4,
+    "a": 4,
+    "b": 4,
+    "k": 4,
+    "m": 4,
+    "x": 4,
+    "c": 4,
+    "d": 4,
+    "e": 4,
+    "f": 4,
+    "l": 4,
+    "7": 4,
+    "°": 4,
+    "%": 4,
+    "µ": 4,
+    "g": 4,
+    "0": 4,
+    "1": 4,
+    "2": 4,
+    "3": 4,
+    "4": 4,
+    "8": 4
+  },
+  "clean_up_tokenization_spaces": true,
+  "is_local": false,
+  "is_uroman": false,
+  "language": "hin",
+  "local_files_only": true,
+  "model_max_length": 1000000000000000019884624838656,
+  "normalize": true,
+  "pad_token": "फ",
+  "phonemize": false,
+  "tokenizer_class": "VaakSetuVitsTokenizer",
+  "unk_token": "<unk>",
+  "auto_map": {
+    "AutoTokenizer": [
+      "tokenization_vaaksetu.VaakSetuVitsTokenizer",
+      null
+    ]
+  }
+}
