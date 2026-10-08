@@ -1,0 +1,4 @@
+{"modality": "stt", "lang": "ta", "audio": "audio/ta_karthikeyan.wav", "text": "என் நண்பர் பெயர் கார்த்திகேயன், அவர் கோயம்புத்தூரில் வசிக்கிறார்.", "category": "name"}
+{"modality": "stt", "lang": "en", "audio": "audio/en_pincode.wav", "text": "The PIN code of the office is 600042.", "category": "number"}
+{"modality": "tts", "lang": "hi", "text": "इस फ़ोन की कीमत ₹8,000 है।", "spoken": "इस फ़ोन की कीमत आठ हज़ार रुपये है।", "category": "currency"}
+{"modality": "tts", "lang": "ta", "text": "இன்றைய வெப்பநிலை 39°C.", "spoken": "இன்றைய வெப்பநிலை முப்பத்தொன்பது டிகிரி செல்சியஸ்.", "category": "unit"}
