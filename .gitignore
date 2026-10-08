@@ -1,0 +1,82 @@
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.ipynb_checkpoints/
+
+# ---------- Virtual envs / secrets ----------
+.venv/
+venv/
+env/
+.env
+.env.*
+*.pem
+*.key
+secrets*.json
+
+# ---------- OS / editor junk ----------
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+.idea/
+.vscode/
+
+# ---------- Tool / agent state (not part of the project) ----------
+.claude/
+.playwright-mcp/
+.serena/
+.graphify/
+graphify-out/
+.claude-mem/
+.cache/
+.gradio/
+flagged/
+
+# ---------- Temp / scratch ----------
+*.tmp
+*.bak
+*.orig
+tmp/
+temp/
+archive/
+
+# ---------- Logs ----------
+*.log
+results/*.log
+
+# ---------- Screenshots / generated docs ----------
+*.png
+!docs/**/*.png
+docs/*.pdf
+results/report.html
+
+# ---------- Large binaries & generated artifacts (regenerable / share via release) ----------
+models/**/*.safetensors
+models/**/*.bin
+models/**/*.pt
+models/**/*.pth
+models/**/*.ckpt
+models/**/*.gguf
+data/audio/
+data/seed/audio/
+results/audio/
+results/cache/
+*.db-journal
+*.sqlite-journal
+
+# ---------- Local state / regenerable ----------
+data/vaaksetu.db
+models/stt/*/processor/
+.gradio/
+context.md

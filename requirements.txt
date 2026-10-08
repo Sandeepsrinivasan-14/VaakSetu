@@ -1,0 +1,16 @@
+# Python 3.10 - 3.12.  Install the CUDA build of torch first for GPU training:
+#   pip install torch --index-url https://download.pytorch.org/whl/cu128
+torch>=2.4
+transformers>=4.46
+peft>=0.13
+accelerate>=1.0
+librosa>=0.10
+soundfile>=0.12
+numba>=0.59
+numpy>=1.26
+jiwer>=3.0
+pyyaml>=6.0
+gradio>=4.40
+edge-tts>=6.1        # only for generating the seed demo recordings
+pytest>=8.0
+# Optional: Ollama (https://ollama.com) with `ollama pull gemma3n:e2b` for the Gemma correction assistant
