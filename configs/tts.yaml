@@ -1,0 +1,44 @@
+# TTS fine-tuning configuration (MMS-TTS / VITS, partial fine-tune)
+trainable_modules: [text_encoder]
+# The stochastic duration predictor stays frozen: fine-tuning it on a few dozen
+# sentences (via the HF port's reverse=False path) degraded *all* speech in
+# ablations (general CER 0.133 -> 0.277), while text-encoder-only training did not.
+frozen_modules: [duration_predictor, posterior_encoder, flow, decoder]
+
+# Punctuation is prosodic and intentionally not added to the vocabulary;
+# every other unseen character (α, ₹, °, digits, Latin letters in Indic
+# text ...) gets a new trainable embedding.
+vocab_skip_chars: " .,!?;:'\"()[]{}।॥…“”‘’"
+
+# Each learned character gets K sub-token slots (c, c#1, ... c#K-1): one VITS
+# token has a single prior, so a symbol read as a multi-phoneme word ("α" ->
+# "alpha") needs several learnable positions.  Digits are always slotted
+# because the base checkpoints read them poorly or not at all.
+slots_per_char: 4
+slot_chars: "0123456789"
+
+train:
+  lr_new_embeddings: 2.0e-3   # new symbol/digit slot embeddings learn fast
+  lr_text_encoder: 2.0e-5     # contextual layers adapt slowly (limits drift)
+  lr_duration: 0.0            # duration predictor frozen (see above)
+  dropout: false              # no dropout / layerdrop while fine-tuning (MMS ships layerdrop 0.1)
+  betas: [0.8, 0.99]
+  epochs: 60
+  batch_size: 8
+  max_grad_norm: 5.0
+  seed: 1234
+  replay_ratio: 1.0      # anchors per correction (self-distilled general sentences)
+  # Exponential moving average of the trainable weights (new embeddings +
+  # text encoder), applied before saving. Warmup-corrected decay (see
+  # tts/train.py) so a 60-epoch run on a few dozen sentences still benefits.
+  ema_decay: 0.999
+
+inference:
+  seed: 0
+  noise_scale: 0.667
+  noise_scale_duration: 0.8
+
+gate:
+  max_general_cer_increase: 0.03
+  max_prev_corrections_cer_increase: 0.03
+  bootstrap_samples: 300

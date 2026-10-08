@@ -1,0 +1,72 @@
+# STT fine-tuning configuration (Whisper + LoRA)
+base_model: openai/whisper-large-v3-turbo
+
+lora:
+  r: 32
+  alpha: 64
+  dropout: 0.05
+  # Decoder-only adapters: self-attention, cross-attention and feed-forward
+  # of every decoder layer.  The 32-layer audio encoder stays frozen.
+  target_modules: 'model\.decoder\.layers\.\d+\.((self_attn|encoder_attn)\.(q_proj|k_proj|v_proj|out_proj)|fc1|fc2)'
+
+train:
+  learning_rate: 3.0e-4
+  epochs: 6
+  batch_size: 8
+  grad_accum: 1
+  warmup_ratio: 0.1
+  weight_decay: 0.01
+  max_grad_norm: 1.0
+  seed: 42
+  # Each epoch every clip is seen once with random augmentation
+  # (speed 0.9-1.1x, gain, gaussian noise at 15-30 dB SNR).
+  augment: true
+  # Replay: anchor (general) clips mixed into every run so general
+  # transcription quality is retained (anti-forgetting).
+  replay_ratio: 0.5
+  # Learning-without-Forgetting: on anchor clips the adapted model is also
+  # pulled towards the frozen base model's token distribution (KL).
+  distill_weight: 1.0
+  # Warm-started runs (continuing from a previous adapter) use a gentler LR.
+  continue_lr_scale: 0.5
+  # Exponential moving average of the LoRA weights, applied before saving.
+  # Smooths out late-training noise from the small correction batches; the
+  # effective decay is warmup-corrected (see stt/train.py) so it does not
+  # just freeze the adapter near its random init on short runs.
+  ema_decay: 0.999
+  # Balanced replay across correction batches (round1, round2, imports, ...):
+  # each batch contributes the same number of rows per epoch regardless of
+  # how many sentences it has, so a large later batch cannot drown out an
+  # earlier, smaller one during joint training. Set false to go back to flat
+  # concatenation (the pre-fix behaviour that caused the Tamil round-2 WER
+  # regression documented in RESULTS.md).
+  balance_batches: true
+  # Tamil stays the weakest language (long agglutinative words -> higher WER).
+  # Up-weighting its correction loss (anchors are never weighted, so replay /
+  # anti-forgetting balance is untouched) trades a little extra Tamil-specific
+  # capacity for the other languages without any new data.
+  lang_loss_weight:
+    ta: 1.4
+    hi: 1.0
+    en: 1.0
+
+eval:
+  batch_size: 16
+  # The round3 fleet-alert sentence needs ~321 tokens (sot+lang+task+notimestamps+body+eot);
+  # Whisper's decoder hard limit is 448, so 400 leaves headroom without ever truncating it.
+  max_new_tokens: 400
+  # Symbols Whisper suppresses by default that our conventions require.
+  # '-' added for hyphenated dates (24-07-2026) and hyphenated vehicle regs
+  # (TN88-AB-1234) - same fix as '/' for slashed dates, applied uniformly to
+  # base and every version (decoding configuration, not a text rule).
+  allow_symbols: "/@:+#-"
+
+# Promotion gate: a new version is promoted only if it does not degrade
+# general transcription or previously learned corrections beyond tolerance.
+# A regression must also survive a paired bootstrap confidence check (see
+# learning.gate) - it is rejected only when we're confident it is real, not
+# eval-sample noise.
+gate:
+  max_general_wer_increase: 0.02
+  max_prev_corrections_wer_increase: 0.02
+  bootstrap_samples: 300
